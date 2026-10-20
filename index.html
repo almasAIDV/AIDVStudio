@@ -212,6 +212,7 @@ form .btn:disabled{background:rgba(244,241,234,.1);color:var(--dim);box-shadow:n
 .success{grid-column:1/-1;background:var(--bg-3);border:1px solid var(--line);padding:24px;border-radius:16px;font-size:16px}
 .reach{display:flex;flex-direction:column;gap:24px}
 .reach .k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.reach .v a,footer a{text-decoration:none}.reach .v a:hover,footer a:hover{color:var(--ultra-hi)}
 .reach .v{font-family:var(--f-display);font-weight:500;font-size:20px;letter-spacing:-.01em;user-select:all;overflow-wrap:anywhere}
 @media (max-width:780px){.cols{grid-template-columns:1fr}form{grid-template-columns:1fr}}
 
@@ -258,7 +259,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </div>
   <div class="intro-sub">Independent AI Creative Studio</div>
   <div class="counter" id="count">000</div>
-  <button class="skip press" id="skip" type="button">Пропустить</button>
+  <button class="skip press" id="skip" type="button" data-i="skip">Пропустить</button>
 </div>
 
 <!-- page transition layers -->
@@ -277,7 +278,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
     </ul>
     <div class="nav-r">
       <button class="chip press" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false">RU ▾</button>
-      <button class="chip press menu-btn" id="menuBtn" type="button" aria-expanded="false">Меню</button>
+      <button class="chip press menu-btn" id="menuBtn" type="button" aria-expanded="false" data-i="menu">Меню</button>
       <div class="pop" id="langPop" hidden>
         <button type="button" data-l="RU" class="on">Русский <span>RU</span></button>
         <button type="button" data-l="EN">English <span>EN</span></button>
@@ -299,20 +300,19 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   <section class="hero" id="hero" style="padding-block:0">
     <div id="gl" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="eyebrow" data-rv>Independent AI Creative Studio · Казахстан</p>
-      <h1 class="d1" aria-label="Идеи становятся реальностью">
-        <span class="ln"><span>Идеи</span></span>
-        <span class="ln"><span class="lt u">становятся</span></span>
-        <span class="ln" style="overflow:visible"><span><span class="x3d" id="x3d">Реальностью</span></span></span>
+      <p class="eyebrow" data-rv data-i="eyebrow">Independent AI Creative Studio · Казахстан</p>
+      <h1 class="d1" aria-label="Идеи становятся реальностью" data-ia="h1">
+        <span class="ln"><span data-i="h1a">Идеи</span></span>
+        <span class="ln"><span class="lt u" data-i="h1b">становятся</span></span>
+        <span class="ln" style="overflow:visible"><span><span class="x3d" id="x3d" data-i="h1c">Реальностью</span></span></span>
       </h1>
       <div class="hero-foot">
-        <p data-rv>Придумываем идею, режиссируем каждый кадр и снимаем с помощью AI то, что раньше требовало бюджета большого продакшна.</p>
+        <p data-rv data-i="heroP">Придумываем идею, режиссируем каждый кадр и снимаем с помощью AI то, что раньше требовало бюджета большого продакшна.</p>
         <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap" data-rv>
-          <a class="btn press mag" href="#contact" data-tr="circle" data-name="Contact">Обсудить проект</a>
-          <button class="btn ghost press mag" id="replay" type="button">Повторить интро</button>
+          <a class="btn press mag" href="#contact" data-tr="circle" data-name="Contact" data-i="cta">Обсудить проект</a>
         </div>
       </div>
-      <div class="scroll-cue" style="margin-top:48px" data-rv><i></i>Скролл</div>
+      <div class="scroll-cue" style="margin-top:48px" data-rv><i></i><span data-i="scroll">Скролл</span></div>
     </div>
   </section>
 
@@ -322,11 +322,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <h2 class="d2"><span class="ln"><span>Кейсы</span></span></h2>
-          <p data-rv>Тяните ленту мышью или пальцем. Наведите на кейс, чтобы он ожил.</p>
+          <h2 class="d2"><span class="ln"><span data-i="workH">Кейсы</span></span></h2>
+          <p data-rv data-i="workP">Тяните ленту мышью или пальцем. Наведите на кейс, чтобы он ожил.</p>
         </div>
-        <div class="filters" role="group" aria-label="Фильтр кейсов" data-rv>
-          <button type="button" class="press" data-f="all" aria-pressed="true">Все</button>
+        <div class="filters" role="group" aria-label="Фильтр кейсов" data-ia="filters" data-rv>
+          <button type="button" class="press" data-f="all" aria-pressed="true" data-i="all">Все</button>
           <button type="button" class="press" data-f="brands" aria-pressed="false">Brands</button>
           <button type="button" class="press" data-f="people" aria-pressed="false">People</button>
           <button type="button" class="press" data-f="lab" aria-pressed="false">Experimental</button>
@@ -335,8 +335,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
     </div>
     <div class="strip" id="strip"><div class="track-c" id="trackC"></div></div>
     <div class="wrap strip-ctl">
-      <span class="hint">Все кейсы здесь примеры для макета, вместо заглушек будут ваши ролики.</span>
-      <div class="arrows"><button class="press" type="button" id="prev" aria-label="Предыдущий кейс">←</button><button class="press" type="button" id="next" aria-label="Следующий кейс">→</button></div>
+      <span class="hint" data-i="hint">Все кейсы здесь примеры для макета, вместо заглушек будут ваши ролики.</span>
+      <div class="arrows"><button class="press" type="button" id="prev" aria-label="Предыдущий кейс" data-ia="prev">←</button><button class="press" type="button" id="next" aria-label="Следующий кейс" data-ia="next">→</button></div>
     </div>
   </section>
 
@@ -345,9 +345,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   <section class="about" id="about">
     <div class="wrap">
       <div>
-        <p class="eyebrow" data-rv>О студии</p>
-        <h2 class="d2"><span class="ln"><span>Идея за</span></span><span class="ln"><span class="lt u">человеком,</span></span><span class="ln"><span>кадр за AI</span></span></h2>
-        <p class="lead" data-rv>Мы независимая AI-студия из Казахстана. Придумываем и режиссируем сами, а нейросети помогают снять это на уровне большой рекламы.</p>
+        <p class="eyebrow" data-rv data-i="aboutE">О студии</p>
+        <h2 class="d2"><span class="ln"><span data-i="ab1">Идея за</span></span><span class="ln"><span class="lt u" data-i="ab2">человеком,</span></span><span class="ln"><span data-i="ab3">кадр за AI</span></span></h2>
+        <p class="lead" data-rv data-i="lead">Мы независимая AI-студия из Казахстана. Придумываем и режиссируем сами, а нейросети помогают снять это на уровне большой рекламы.</p>
         <p class="motto" data-rv>Creative-first. <span class="u">AI-powered.</span> Human-directed.</p>
       </div>
       <div class="circle-wrap" data-rv>
@@ -355,7 +355,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
           <defs><path id="c" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs>
           <text><textPath href="#c" textLength="512" lengthAdjust="spacing">AI-POWERED ✦ HUMAN-DIRECTED ✦ IDEAS MADE REAL ✦</textPath></text>
         </svg>
-        <svg class="mascot" id="eye" viewBox="0 0 100 100" aria-label="Глаз-объектив AIDV следит за курсором">
+        <svg class="mascot" id="eye" viewBox="0 0 100 100" aria-label="Глаз-объектив AIDV следит за курсором" data-ia="eye">
           <circle cx="50" cy="50" r="46" fill="var(--bg-3)" stroke="var(--fg)" stroke-width="2.5"/>
           <circle class="dash" cx="50" cy="50" r="34" fill="none" stroke="var(--fg)" stroke-width="1.2" stroke-dasharray="3 4"/>
           <circle cx="50" cy="50" r="24" fill="var(--fg)"/>
@@ -368,76 +368,76 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   <div class="doors" id="doors">
     <a class="door brands" href="#contact" data-who="brand" data-tr="circle" data-name="Contact">
       <span class="k" data-rv>For Brands</span>
-      <h3 class="d2"><span class="ln"><span>Превращаем</span></span><span class="ln"><span class="lt u">внимание</span></span><span class="ln"><span>в желание</span></span></h3>
-      <ul class="rows" data-rv><li>AI-реклама<i>→</i></li><li>Визуалы и постеры<i>→</i></li><li>Лендинги<i>→</i></li><li>AI-персонажи<i>→</i></li></ul>
-      <span class="go" data-rv>Для бизнеса →</span>
+      <h3 class="d2"><span class="ln"><span data-i="br1">Превращаем</span></span><span class="ln"><span class="lt u" data-i="br2">внимание</span></span><span class="ln"><span data-i="br3">в желание</span></span></h3>
+      <ul class="rows" data-rv><li data-i="brA">AI-реклама<i>→</i></li><li data-i="brB">Визуалы и постеры<i>→</i></li><li data-i="brC">Лендинги<i>→</i></li><li data-i="brD">AI-персонажи<i>→</i></li></ul>
+      <span class="go" data-rv data-i="brGo">Для бизнеса →</span>
     </a>
     <a class="door people" href="#contact" data-who="me" data-tr="curtain" data-name="Contact">
       <span class="k" data-rv>For People</span>
-      <h3 class="d2"><span class="ln"><span>Представь.</span></span><span class="ln"><span class="lt">Остальное</span></span><span class="ln"><span>за нами</span></span></h3>
-      <ul class="rows" data-rv><li>Love Story<i>→</i></li><li>Поздравления<i>→</i></li><li>Памятные ролики<i>→</i></li><li>Мультфильмы<i>→</i></li></ul>
-      <span class="go" data-rv>Для себя и близких →</span>
+      <h3 class="d2"><span class="ln"><span data-i="pp1">Представь.</span></span><span class="ln"><span class="lt" data-i="pp2">Остальное</span></span><span class="ln"><span data-i="pp3">за нами</span></span></h3>
+      <ul class="rows" data-rv><li>Love Story<i>→</i></li><li data-i="ppB">Поздравления<i>→</i></li><li data-i="ppC">Памятные ролики<i>→</i></li><li data-i="ppD">Мультфильмы<i>→</i></li></ul>
+      <span class="go" data-rv data-i="ppGo">Для себя и близких →</span>
     </a>
   </div>
 
   <section id="services">
     <div class="wrap">
-      <div class="sec-head"><h2 class="d2"><span class="ln"><span>Как мы</span></span><span class="ln"><span class="lt u">работаем</span></span></h2></div>
+      <div class="sec-head"><h2 class="d2"><span class="ln"><span data-i="sv1">Как мы</span></span><span class="ln"><span class="lt u" data-i="sv2">работаем</span></span></h2></div>
       <div class="steps" id="steps">
-        <div class="step"><span class="n">01</span><h3>Идея</h3><p>Разбираем бриф и задачу, предлагаем концепт и сценарий.</p></div>
-        <div class="step"><span class="n">02</span><h3>Подготовка</h3><p>Moodboard, раскадровка, shot list. Утверждаем стиль до генерации.</p></div>
-        <div class="step"><span class="n">03</span><h3>Генерация</h3><p>Создаём кадры в AI-инструментах и доводим каждый до нужного света и композиции.</p></div>
-        <div class="step"><span class="n">04</span><h3>Финиш</h3><p>Монтаж, звук, цвет и форматы под площадки: Reels, TikTok, YouTube, ТВ.</p></div>
+        <div class="step"><span class="n">01</span><h3 data-i="s1h">Идея</h3><p data-i="s1p">Разбираем бриф и задачу, предлагаем концепт и сценарий.</p></div>
+        <div class="step"><span class="n">02</span><h3 data-i="s2h">Подготовка</h3><p data-i="s2p">Moodboard, раскадровка, shot list. Утверждаем стиль до генерации.</p></div>
+        <div class="step"><span class="n">03</span><h3 data-i="s3h">Генерация</h3><p data-i="s3p">Создаём кадры в AI-инструментах и доводим каждый до нужного света и композиции.</p></div>
+        <div class="step"><span class="n">04</span><h3 data-i="s4h">Финиш</h3><p data-i="s4p">Монтаж, звук, цвет и форматы под площадки: Reels, TikTok, YouTube, ТВ.</p></div>
       </div>
       <div class="svc" id="svc">
-        <div class="card tilt"><i class="glare"></i><small>Флагман</small><h3><span class="u">AIDV</span> Commercials</h3><p>AI-ролики 10–30 секунд для рекламы и соцсетей.</p></div>
-        <div class="card tilt"><i class="glare"></i><small>Быстрый старт</small><h3><span class="u">AIDV</span> Visuals</h3><p>Серии из 3–5 постеров и AI-изображений для бренда.</p></div>
-        <div class="card tilt"><i class="glare"></i><small>Сайты</small><h3><span class="u">AIDV</span> Digital</h3><p>Лендинги с кинематографичной подачей.</p></div>
-        <div class="card tilt"><i class="glare"></i><small>Для людей</small><h3><span class="u">AIDV</span> Stories</h3><p>Love Story и персональные фильмы на 30–60 секунд.</p></div>
+        <div class="card tilt"><i class="glare"></i><small data-i="c1s">Флагман</small><h3><span class="u">AIDV</span> Commercials</h3><p data-i="c1p">AI-ролики 10–30 секунд для рекламы и соцсетей.</p></div>
+        <div class="card tilt"><i class="glare"></i><small data-i="c2s">Быстрый старт</small><h3><span class="u">AIDV</span> Visuals</h3><p data-i="c2p">Серии из 3–5 постеров и AI-изображений для бренда.</p></div>
+        <div class="card tilt"><i class="glare"></i><small data-i="c3s">Сайты</small><h3><span class="u">AIDV</span> Digital</h3><p data-i="c3p">Лендинги с кинематографичной подачей.</p></div>
+        <div class="card tilt"><i class="glare"></i><small data-i="c4s">Для людей</small><h3><span class="u">AIDV</span> Stories</h3><p data-i="c4p">Love Story и персональные фильмы на 30–60 секунд.</p></div>
       </div>
     </div>
   </section>
 
   <section class="contact" id="contact">
     <div class="wrap">
-      <h2 class="d1"><span class="ln"><span>Давай</span></span><span class="ln"><span class="lt u">создадим</span></span><span class="ln"><span>то, что запомнят</span></span></h2>
+      <h2 class="d1"><span class="ln"><span data-i="ct1">Давай</span></span><span class="ln"><span class="lt u" data-i="ct2">создадим</span></span><span class="ln"><span data-i="ct3">то, что запомнят</span></span></h2>
       <div class="cols">
         <form id="brief" novalidate data-rv>
-          <div class="full who" role="radiogroup" aria-label="Для кого проект">
-            <input type="radio" name="who" id="who-brand" value="brand" checked><label for="who-brand">Я бренд</label>
-            <input type="radio" name="who" id="who-me" value="me"><label for="who-me">Это для меня</label>
+          <div class="full who" role="radiogroup" aria-label="Для кого проект" data-ia="who">
+            <input type="radio" name="who" id="who-brand" value="brand" checked><label for="who-brand" data-i="whoB">Я бренд</label>
+            <input type="radio" name="who" id="who-me" value="me"><label for="who-me" data-i="whoM">Это для меня</label>
           </div>
-          <label class="f" for="name">Имя <input type="text" id="name" autocomplete="name" placeholder="Как к вам обращаться"></label>
-          <label class="f" for="reach">Как связаться <input type="text" id="reach" placeholder="WhatsApp, Telegram или email"></label>
-          <label class="f" for="svcSel">Услуга
-            <select id="svcSel"><option>AIDV Commercials</option><option>AIDV Visuals</option><option>AIDV Digital</option><option>AIDV Stories</option><option>Пока не знаю</option></select>
+          <label class="f" for="name"><span data-i="fName">Имя</span> <input type="text" id="name" autocomplete="name" placeholder="Как к вам обращаться" data-ip="phName"></label>
+          <label class="f" for="reach"><span data-i="fReach">Как связаться</span> <input type="text" id="reach" placeholder="WhatsApp, Telegram или email" data-ip="phReach"></label>
+          <label class="f" for="svcSel"><span data-i="fSvc">Услуга</span>
+            <select id="svcSel"><option>AIDV Commercials</option><option>AIDV Visuals</option><option>AIDV Digital</option><option>AIDV Stories</option><option data-i="unsure">Пока не знаю</option></select>
           </label>
-          <label class="f" for="when">Сроки <input type="text" id="when" placeholder="Например, к 1 декабря"></label>
-          <label class="f full" for="idea">Идея своими словами <textarea id="idea" placeholder="Что хотите показать, для кого и где это будет жить"></textarea></label>
-          <div class="full consent"><input type="checkbox" id="agree"><label for="agree">Я согласен(на) на обработку персональных данных и принимаю <a href="#contact">политику конфиденциальности</a> <span class="req">*</span></label></div>
-          <div class="full consent"><input type="checkbox" id="news"><label for="news">Хочу получать новости и новые работы AIDV (необязательно)</label></div>
-          <button class="btn press" id="send" type="submit" disabled>Отправить бриф</button>
+          <label class="f" for="when"><span data-i="fWhen">Сроки</span> <input type="text" id="when" placeholder="Например, к 1 декабря" data-ip="phWhen"></label>
+          <label class="f full" for="idea"><span data-i="fIdea">Идея своими словами</span> <textarea id="idea" placeholder="Что хотите показать, для кого и где это будет жить" data-ip="phIdea"></textarea></label>
+          <div class="full consent"><input type="checkbox" id="agree"><label for="agree" data-i="agree">Я согласен(на) на обработку персональных данных и принимаю <a href="#contact">политику конфиденциальности</a> <span class="req">*</span></label></div>
+          <div class="full consent"><input type="checkbox" id="news"><label for="news" data-i="news">Хочу получать новости и новые работы AIDV (необязательно)</label></div>
+          <button class="btn press" id="send" type="submit" disabled data-i="send">Отправить бриф</button>
           <span class="fhint" id="fhint">Отметьте согласие, чтобы отправить</span>
         </form>
         <div class="reach" data-rv>
-          <div><div class="k">Owner</div><div class="v">Almas</div></div>
-          <div><div class="k">Email</div><div class="v">hello@aidvstudios.com</div></div>
-          <div><div class="k">WhatsApp / Telegram</div><div class="v">+7 7XX XXX XX XX</div></div>
-          <div><div class="k">Instagram</div><div class="v">@aidv.studios</div></div>
-          <div class="hint">Контакты в макете условные.</div>
+          <div><div class="k">Owner</div><div class="v">Almas DV</div></div>
+          <div><div class="k">Email</div><div class="v"><a href="mailto:aidvstudio@gmail.com">aidvstudio@gmail.com</a></div></div>
+          <div><div class="k">WhatsApp / Telegram</div><div class="v"><a href="https://wa.me/77780093967" target="_blank" rel="noopener">+7 (778) 009 39 67</a></div></div>
+          <div><div class="k">Telegram</div><div class="v"><a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a></div></div>
+          <div><div class="k">Instagram</div><div class="v"><a href="https://instagram.com/almas.aidv" target="_blank" rel="noopener">@almas.aidv</a></div></div>
         </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 AIDV Studios · Ideas made real</span><span>Instagram · Telegram · YouTube · Behance</span></div></footer>
+<footer><div class="wrap"><span>© 2026 AIDV Studios · Ideas made real</span><span class="soc"><a href="https://instagram.com/almas.aidv" target="_blank" rel="noopener">Instagram</a> · <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">Telegram</a> · <a href="https://wa.me/77780093967" target="_blank" rel="noopener">WhatsApp</a></span></div></footer>
 
 <div class="modal" id="modal" hidden>
   <div class="scrim" id="scrim"></div>
   <div class="mbox" id="mbox"><div class="reel" id="mreel"></div>
-    <div class="mcap"><b id="mtitle"></b><span id="msub"></span> · здесь будет плеер с роликом</div>
-    <button class="mx press" id="mclose" type="button" aria-label="Закрыть">×</button>
+    <div class="mcap"><b id="mtitle"></b><span id="msub"></span> · <span data-i="player">здесь будет плеер с роликом</span></div>
+    <button class="mx press" id="mclose" type="button" aria-label="Закрыть" data-ia="close">×</button>
   </div>
 </div>
 <div class="toast" id="toast" hidden></div>
@@ -496,7 +496,8 @@ if(FINE){
 /* ---- marquees (speed + 3D tilt follow scroll velocity) ---- */
 function buildMq(id,html,reps){const t=$(id);t.innerHTML=html.repeat(reps)+html.repeat(reps);return t}
 const mq1=buildMq('#mq1','<span class="cube">Work</span><span class="o">—</span><span class="o cube">Work</span><span>—</span>',3);
-const mq2=buildMq('#mq2','<span>Кино</span><span class="u">✦</span><span>Стиль</span><span class="u">✦</span><span>Эмоция</span><span class="u">✦</span><span>Продажи</span><span class="u">✦</span><span>Смелость</span><span class="u">✦</span>',2);
+const mqWords=w=>w.map(x=>`<span>${x}</span><span class="u">✦</span>`).join('');
+const mq2=buildMq('#mq2',mqWords(['Кино','Стиль','Эмоция','Продажи','Смелость']),2);
 const mqs=[{el:mq1,off:0,dir:1,base:60},{el:mq2,off:0,dir:-1,base:45}];
 const cubes=$$('#mq1 .cube');let cubeT=0;
 ticks.add((dt)=>{
@@ -555,18 +556,20 @@ ticks.add(dt=>{
 });
 
 /* ---- cases: draggable strip with momentum, rubber-band, snap ---- */
+/* t/c: [RU, EN, KZ] */
 const cases=[
-  {t:'NOIR VEIL',c:'Парфюм · реклама 20 с',f:'brands',tag:'Brands'},
-  {t:'Утро в горах',c:'Кофейня · постеры',f:'brands',tag:'Brands'},
-  {t:'Наша история',c:'Love Story · 45 с',f:'people',tag:'People'},
-  {t:'Бабушке 80',c:'Памятный ролик · 60 с',f:'people',tag:'People'},
-  {t:'Стеклянная степь',c:'Creative Lab',f:'lab',tag:'Experimental'},
-  {t:'Сайт AIDV',c:'Digital · лендинг',f:'brands',tag:'Brands'}
+  {t:['NOIR VEIL','NOIR VEIL','NOIR VEIL'],c:['Парфюм · реклама 20 с','Perfume · 20 s ad','Парфюм · 20 с жарнама'],f:'brands',tag:'Brands'},
+  {t:['Утро в горах','Mountain morning','Таудағы таң'],c:['Кофейня · постеры','Coffee shop · posters','Кофехана · постерлер'],f:'brands',tag:'Brands'},
+  {t:['Наша история','Our story','Біздің оқиға'],c:['Love Story · 45 с','Love Story · 45 s','Love Story · 45 с'],f:'people',tag:'People'},
+  {t:['Бабушке 80','Grandma turns 80','Әжеге 80 жас'],c:['Памятный ролик · 60 с','Memory film · 60 s','Естелік ролик · 60 с'],f:'people',tag:'People'},
+  {t:['Стеклянная степь','Glass steppe','Шыны дала'],c:['Creative Lab','Creative Lab','Creative Lab'],f:'lab',tag:'Experimental'},
+  {t:['Сайт AIDV','AIDV website','AIDV сайты'],c:['Digital · лендинг','Digital · landing page','Digital · лендинг'],f:'brands',tag:'Brands'}
 ];
+let LI=0; /* 0 RU, 1 EN, 2 KZ */
 const strip=$('#strip'),trackC=$('#trackC');
 trackC.innerHTML=cases.map((k,i)=>`<button type="button" class="case" data-f="${k.f}" data-i="${i}" data-cursor="Смотреть">
-  <div class="thumb t${i+1}"><div class="reel"></div><i class="glare"></i><span class="tag">${k.tag}</span><span class="big">${k.t}</span></div>
-  <div class="meta"><span>${k.c}</span><span>Пример</span></div></button>`).join('');
+  <div class="thumb t${i+1}"><div class="reel"></div><i class="glare"></i><span class="tag">${k.tag}</span><span class="big">${k.t[0]}</span></div>
+  <div class="meta"><span class="cc">${k.c[0]}</span><span class="cs">Пример</span></div></button>`).join('');
 strip.dataset.cursor='Тянуть';
 $$('.case .thumb').forEach(t=>tilt(t,7));
 const sx=S(0,{damping:1,response:.4});let bmin=0,snaps=[0];
@@ -612,7 +615,7 @@ $$('.filters button').forEach(b=>b.addEventListener('click',()=>{
 const modal=$('#modal'),mbox=$('#mbox'),scrim=$('#scrim');
 const mp=S(0,{damping:1,response:.45});let mCard=null,mFrom=null;
 function openCase(card){const k=cases[card.dataset.i];mCard=card;
-  $('#mtitle').textContent=k.t;$('#msub').textContent=k.c;$('#mreel').style.filter=getComputedStyle(card.querySelector('.reel')).filter;
+  $('#mtitle').textContent=k.t[LI];$('#msub').textContent=k.c[LI];$('#mreel').style.filter=getComputedStyle(card.querySelector('.reel')).filter;
   modal.hidden=false;mFrom=card.querySelector('.thumb').getBoundingClientRect();mp.t=1;if(RM){mp.x=1}$('#mclose').focus({preventScroll:true});}
 function closeCase(){if(mCard)mFrom=mCard.querySelector('.thumb').getBoundingClientRect();mp.t=0;if(RM)mp.x=0}
 $('#mclose').onclick=closeCase;scrim.onclick=closeCase;addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeCase()});
@@ -630,21 +633,99 @@ $$('.door').forEach(d=>d.addEventListener('click',()=>{$(d.dataset.who==='me'?'#
 
 /* ---- consent gate ---- */
 const agree=$('#agree'),send=$('#send'),fh=$('#fhint');
-agree.addEventListener('change',()=>{send.disabled=!agree.checked;fh.textContent=agree.checked?'Готово к отправке':'Отметьте согласие, чтобы отправить'});
+agree.addEventListener('change',()=>{send.disabled=!agree.checked;fh.textContent=T(agree.checked?'ready':'tick')});
 $('#brief').addEventListener('submit',e=>{e.preventDefault();if(!agree.checked)return;
-  e.target.innerHTML='<div class="success">Спасибо! Это демо-форма, в макете бриф никуда не отправляется. На живом сайте здесь будет: «Ответим в течение дня. Если срочно, пишите в WhatsApp».</div>'});
+  const v=id=>($('#'+id)||{}).value||'';
+  const L=T('wa');const msg=[L[0],`${L[1]}: ${$('#who-me').checked?T('whoM'):T('whoB')}`,`${L[2]}: ${v('name')}`,`${L[3]}: ${v('reach')}`,`${L[4]}: ${v('svcSel')}`,`${L[5]}: ${v('when')}`,`${L[6]}: ${v('idea')}`].join('\n');
+  window.open('https://wa.me/77780093967?text='+encodeURIComponent(msg),'_blank','noopener');
+  const ok=document.createElement('div');ok.className='success';ok.innerHTML=T('success');e.target.replaceChildren(ok)});
 
 /* ---- toast ---- */
 const toast=$('#toast');let tt;
 function say(t){toast.textContent=t;toast.hidden=false;if(G)G.fromTo(toast,{y:16,opacity:0,scale:.96},{y:0,opacity:1,scale:1,duration:.4,ease:'expo.out'});clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,2600)}
+
+/* ---- languages: RU is the markup itself, EN/KZ come from this dictionary ---- */
+const LANGS=['RU','EN','KZ'],HTML_LANG={RU:'ru',EN:'en',KZ:'kk'};
+const D={
+ skip:['Skip','Өткізу'],menu:['Menu','Мәзір'],
+ eyebrow:['Independent AI Creative Studio · Kazakhstan','Independent AI Creative Studio · Қазақстан'],
+ h1:['Ideas made real','Идеялар шындыққа айналады'],h1a:['Ideas','Идеялар'],h1b:['made','шындыққа'],h1c:['real','айналады'],
+ heroP:['We come up with the idea, direct every frame and use AI to shoot what used to take a big production budget.','Идеяны ойлап табамыз, әр кадрды өзіміз қоямыз және бұрын үлкен продакшн бюджетін қажет еткен дүниені AI көмегімен түсіреміз.'],
+ cta:['Discuss a project','Жобаны талқылау'],scroll:['Scroll','Төмен'],
+ workH:['Work','Жұмыстар'],workP:['Drag the strip with your mouse or finger. Hover over a case to bring it to life.','Лентаны тінтуірмен немесе саусақпен жылжытыңыз. Кейс жандануы үшін курсорды үстіне апарыңыз.'],
+ filters:['Filter cases','Кейстер сүзгісі'],all:['All','Барлығы'],
+ hint:['All cases here are placeholders; real films are coming soon.','Мұндағы кейстер әзірге үлгі ретінде тұр, жақында нағыз роликтер қосылады.'],
+ prev:['Previous case','Алдыңғы кейс'],next:['Next case','Келесі кейс'],
+ aboutE:['About','Студия туралы'],ab1:['The idea','Идея'],ab2:['is human,','адамнан,'],ab3:['the frame is AI','кадр AI-дан'],
+ lead:['We are an independent AI studio from Kazakhstan. We write and direct ourselves, and neural networks help us shoot it at the level of big advertising.','Біз Қазақстандағы тәуелсіз AI-студиямыз. Идеяны өзіміз ойлап, өзіміз қоямыз, ал нейрожелілер оны үлкен жарнама деңгейінде түсіруге көмектеседі.'],
+ eye:['AIDV lens-eye follows your cursor','AIDV көз-объективі курсордың соңынан қарайды'],
+ br1:['Turning','Назарды'],br2:['attention','ынтызарлыққа'],br3:['into desire','айналдырамыз'],
+ brA:['AI commercials<i>→</i>','AI-жарнама<i>→</i>'],brB:['Visuals and posters<i>→</i>','Визуалдар мен постерлер<i>→</i>'],brC:['Landing pages<i>→</i>','Лендингтер<i>→</i>'],brD:['AI characters<i>→</i>','AI-кейіпкерлер<i>→</i>'],
+ brGo:['For business →','Бизнес үшін →'],
+ pp1:['Imagine it.','Елестетіңіз.'],pp2:['The rest','Қалғаны'],pp3:['is on us','бізден'],
+ ppB:['Greetings<i>→</i>','Құттықтаулар<i>→</i>'],ppC:['Memory films<i>→</i>','Естелік роликтер<i>→</i>'],ppD:['Cartoons<i>→</i>','Мультфильмдер<i>→</i>'],
+ ppGo:['For you and your loved ones →','Өзіңізге және жақындарыңызға →'],
+ sv1:['How we','Біз қалай'],sv2:['work','жұмыс істейміз'],
+ s1h:['Idea','Идея'],s1p:['We break down the brief and the task, then propose a concept and script.','Бриф пен міндетті талдап, концепт пен сценарий ұсынамыз.'],
+ s2h:['Prep','Дайындық'],s2p:['Moodboard, storyboard, shot list. We sign off the style before generating.','Moodboard, раскадровка, shot list. Генерацияға дейін стильді бекітеміз.'],
+ s3h:['Generation','Генерация'],s3p:['We create frames in AI tools and bring each one to the right light and composition.','Кадрларды AI-құралдарда жасап, әрқайсысын керекті жарық пен композицияға жеткіземіз.'],
+ s4h:['Finish','Финиш'],s4p:['Editing, sound, colour and formats for every platform: Reels, TikTok, YouTube, TV.','Монтаж, дыбыс, түс және әр алаңға арналған форматтар: Reels, TikTok, YouTube, ТВ.'],
+ c1s:['Flagship','Флагман'],c1p:['AI films of 10–30 seconds for ads and social media.','Жарнама мен әлеуметтік желілерге арналған 10–30 секундтық AI-роликтер.'],
+ c2s:['Quick start','Жылдам бастау'],c2p:['Series of 3–5 posters and AI images for your brand.','Брендке арналған 3–5 постер мен AI-суреттер сериясы.'],
+ c3s:['Websites','Сайттар'],c3p:['Landing pages with a cinematic feel.','Кинематографиялық стильдегі лендингтер.'],
+ c4s:['For people','Адамдар үшін'],c4p:['Love Story and personal films of 30–60 seconds.','30–60 секундтық Love Story және жеке фильмдер.'],
+ ct1:["Let's",'Бірге'],ct2:['create','жасайық'],ct3:['something memorable','есте қалатын дүниені'],
+ who:['Who the project is for','Жоба кім үшін'],whoB:["I'm a brand",'Мен брендпін'],whoM:["It's for me",'Бұл өзім үшін'],
+ fName:['Name','Аты'],phName:['What should we call you','Сізге қалай жүгінейік'],
+ fReach:['How to reach you','Байланыс'],phReach:['WhatsApp, Telegram or email','WhatsApp, Telegram немесе email'],
+ fSvc:['Service','Қызмет'],unsure:['Not sure yet','Әзірге білмеймін'],
+ fWhen:['Timing','Мерзімі'],phWhen:['For example, by 1 December','Мысалы, 1 желтоқсанға дейін'],
+ fIdea:['Your idea in your own words','Идеяңыз өз сөзіңізбен'],phIdea:['What you want to show, to whom, and where it will be published','Не көрсеткіңіз келеді, кімге және қай жерде жарияланады'],
+ agree:['I agree to the processing of my personal data and accept the <a href="#contact">privacy policy</a> <span class="req">*</span>','Жеке деректерімді өңдеуге келісемін және <a href="#contact">құпиялылық саясатын</a> қабылдаймын <span class="req">*</span>'],
+ news:['I want to receive AIDV news and new work (optional)','AIDV жаңалықтары мен жаңа жұмыстарын алғым келеді (міндетті емес)'],
+ send:['Send brief','Брифті жіберу'],player:['the film player goes here','мұнда ролик ойнатқышы болады'],close:['Close','Жабу'],
+ /* script-only strings: [RU, EN, KZ] */
+ tick:['Отметьте согласие, чтобы отправить','Tick the consent box to send','Жіберу үшін келісімді белгілеңіз'],
+ ready:['Готово к отправке','Ready to send','Жіберуге дайын'],
+ sample:['Пример','Sample','Үлгі'],watch:['Смотреть','Watch','Көру'],drag:['Тянуть','Drag','Тарту'],
+ words:[['Кино','Стиль','Эмоция','Продажи','Смелость'],['Cinema','Style','Emotion','Sales','Courage'],['Кино','Стиль','Эмоция','Сату','Батылдық']],
+ wa:[['Бриф с сайта AIDV','Кто','Имя','Связь','Услуга','Сроки','Идея'],['Brief from the AIDV website','Who','Name','Contact','Service','Timing','Idea'],['AIDV сайтынан бриф','Кім','Аты','Байланыс','Қызмет','Мерзімі','Идея']],
+ success:['Спасибо! Открываем WhatsApp с вашим брифом, осталось нажать «Отправить». Если он не открылся, напишите нам в Telegram <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.',
+  'Thank you! We are opening WhatsApp with your brief, just press Send. If it did not open, message us on Telegram <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.',
+  'Рақмет! Брифіңізбен WhatsApp ашылады, тек «Жіберу» батырмасын басыңыз. Егер ашылмаса, бізге Telegram арқылы жазыңыз: <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.']
+};
+const SCRIPT_KEYS=new Set(['tick','ready','sample','watch','drag','words','wa','success']);
+/* T(key): markup keys fall back to the Russian captured from the page */
+const RU_SRC={};
+function T(k){const e=D[k];if(!e)return RU_SRC[k]||'';if(SCRIPT_KEYS.has(k))return e[LI];return LI===0?(RU_SRC[k]!=null?RU_SRC[k]:''):e[LI-1]}
+$$('[data-i]').forEach(el=>{RU_SRC[el.dataset.i]=el.innerHTML});
+$$('[data-ip]').forEach(el=>{RU_SRC[el.dataset.ip]=el.placeholder});
+$$('[data-ia]').forEach(el=>{RU_SRC[el.dataset.ia]=el.getAttribute('aria-label')});
+function setLang(code,save){
+  LI=Math.max(0,LANGS.indexOf(code));code=LANGS[LI];
+  document.documentElement.lang=HTML_LANG[code];
+  $$('[data-i]').forEach(el=>{const v=T(el.dataset.i);if(el.innerHTML!==v)el.innerHTML=v});
+  $$('[data-ip]').forEach(el=>el.placeholder=T(el.dataset.ip));
+  $$('[data-ia]').forEach(el=>el.setAttribute('aria-label',T(el.dataset.ia)));
+  $$('.case').forEach(c=>{const k=cases[c.dataset.i];c.querySelector('.big').textContent=k.t[LI];c.querySelector('.cc').textContent=k.c[LI];c.querySelector('.cs').textContent=T('sample');c.dataset.cursor=T('watch')});
+  strip.dataset.cursor=T('drag');
+  mq2.innerHTML=mqWords(T('words')).repeat(2)+mqWords(T('words')).repeat(2);
+  if(fh&&agree)fh.textContent=T(agree.checked?'ready':'tick');
+  $$('#langPop button').forEach(x=>x.classList.toggle('on',x.dataset.l===code));
+  $('#langBtn').textContent=code+' ▾';
+  if(save){try{localStorage.setItem('aidv-lang',code)}catch(e){}}
+}
+(function(){let c=null;const q=new URLSearchParams(location.search).get('lang');
+  if(q&&LANGS.includes(q.toUpperCase()))c=q.toUpperCase();
+  if(!c){try{c=localStorage.getItem('aidv-lang')}catch(e){}}
+  if(c&&c!=='RU')setLang(c,false);})();
 
 /* ---- popovers anchored to their buttons ---- */
 function popover(btn,pop){btn.addEventListener('click',e=>{e.stopPropagation();const open=pop.hidden;$$('.pop').forEach(p=>p.hidden=true);pop.hidden=!open;btn.setAttribute('aria-expanded',open);
   if(open&&G&&!RM)G.fromTo(pop,{scale:.85,opacity:0,filter:'blur(8px)'},{scale:1,opacity:1,filter:'blur(0px)',duration:.4,ease:'expo.out'})})}
 popover($('#langBtn'),$('#langPop'));popover($('#menuBtn'),$('#menuPop'));
 document.addEventListener('click',e=>{if(!e.target.closest('.pop'))$$('.pop').forEach(p=>p.hidden=true)});
-$$('#langPop button').forEach(b=>b.addEventListener('click',()=>{$$('#langPop button').forEach(x=>x.classList.toggle('on',x===b));$('#langBtn').textContent=b.dataset.l+' ▾';$('#langPop').hidden=true;
-  if(b.dataset.l!=='RU')say(b.dataset.l==='EN'?'English version: перевод сайта добавим следующим шагом':'Қазақша нұсқасы: перевод сайта добавим следующим шагом')}));
+$$('#langPop button').forEach(b=>b.addEventListener('click',()=>{$('#langPop').hidden=true;setLang(b.dataset.l,true)}));
 
 /* ---- page transitions: curtain / circle from click / eye blink ---- */
 const pt=$('#pt'),curtain=$('#pt .curtain'),circ=$('#pt .circ'),lt=$('#pt .lid.t'),lb=$('#pt .lid.b'),lbl=$('#ptLbl');
@@ -713,7 +794,6 @@ function playIntro(){
   introTl=tl;
 }
 $('#skip').onclick=()=>introTl&&introTl.progress(1);
-$('#replay').onclick=()=>{jump('#top');playIntro()};
 playIntro();
 if(!G&&heroTl==null){} /* without GSAP everything simply stays visible */
 
