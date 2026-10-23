@@ -11,6 +11,8 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
 /* Layout: "Ночная студия". Full-bleed night bands, one display family (weight + colour carry emphasis), glass chrome, 3D hero scene. Single dark look by choice. */
+/* "AIDV Fraktur": Pirata One (SIL OFL 1.1, (c) 2012 Rodrigo Fuenzalida, Nicolas Massi) + Cyrillic/Kazakh letters drawn for the hero headline. Subset; rebuild with fonts/build-aidv-fraktur.py. */
+@font-face{font-family:"AIDV Fraktur";font-display:swap;src:url(data:font/woff2;base64,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) format("woff2")}
 :root{
   --bg:#0A0A10;        /* night */
   --bg-2:#12121B;      /* raised */
@@ -96,6 +98,15 @@ header.nav::after{content:"";position:absolute;left:0;right:0;top:100%;height:24
 .hero{position:relative;overflow:hidden;min-height:min(92vh,860px);display:flex;align-items:center}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 72% 45%,rgba(75,73,255,.28),transparent 70%),radial-gradient(40% 50% at 10% 90%,rgba(142,140,255,.10),transparent 70%)}
 #gl{position:absolute;inset:0}
+/* hero headline: blackletter */
+.hero .d1{font-family:"AIDV Fraktur",var(--f-display);font-weight:400;text-transform:none;font-size:clamp(58px,10.5vw,160px);line-height:.86;letter-spacing:0}
+.hero .d1 .ln{padding:.04em 0 .2em;margin:-.04em 0 -.2em}
+/* hero floaters: illustrated objects drifting in space */
+.fly{position:absolute;inset:0;pointer-events:none}
+.fo{position:absolute;left:var(--x);top:var(--y);width:var(--w);translate:-50% -50%;opacity:0;transition:opacity 1.4s ease calc(var(--i)*.09s);filter:drop-shadow(0 16px 22px rgba(0,0,0,.5));will-change:transform}
+.fo svg{display:block;width:100%;height:auto;overflow:visible}
+.fly.on .fo{opacity:var(--o,1)}
+@media (max-width:900px){.fo{width:calc(var(--w)*.62)}.fly.on .fo{opacity:calc(var(--o,1)*.75)}.fo.m-hide{display:none}}
 #gl canvas{display:block;width:100%!important;height:100%!important}
 @media (max-width:900px){#gl{opacity:.55}}
 .hero .wrap{position:relative;width:100%;padding-block:clamp(56px,9vw,110px)}
@@ -299,6 +310,129 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 <main id="top">
   <section class="hero" id="hero" style="padding-block:0">
     <div id="gl" aria-hidden="true"></div>
+    <div class="fly" id="fly" aria-hidden="true">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+          <!-- rug / tufted texture: fuzzy edge + grain -->
+          <filter id="rug" x="-8%" y="-8%" width="116%" height="116%">
+            <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+            <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 -.22" result="g"/>
+            <feComposite in="g" in2="d" operator="in" result="gi"/>
+            <feMerge><feMergeNode in="d"/><feMergeNode in="gi"/></feMerge>
+          </filter>
+          <radialGradient id="visor" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#8E8CFF"/><stop offset=".45" stop-color="#4B49FF"/><stop offset="1" stop-color="#16154A"/></radialGradient>
+          <radialGradient id="hl" cx=".3" cy=".25" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="pl" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#FFC2DA"/><stop offset=".6" stop-color="#FF7AAE"/><stop offset="1" stop-color="#B83A75"/></radialGradient>
+        </defs>
+      </svg>
+
+      <!-- astronaut -->
+      <div class="fo" style="--x:79%;--y:17%;--w:150px;--d:1.1;--r:-12deg;--i:0">
+        <svg viewBox="0 0 200 230" filter="url(#rug)">
+          <rect x="52" y="104" width="96" height="86" rx="26" fill="#BDB8D6"/>
+          <path d="M58 128c-22-6-38-24-40-46-1-8 10-11 14-4 7 13 17 22 32 25z" fill="#F4F1EA"/>
+          <circle cx="25" cy="74" r="13" fill="#FF7AAE"/>
+          <path d="M142 130c20 2 36 14 42 32 3 8-7 13-12 6-7-11-17-18-31-18z" fill="#E6E1F2"/>
+          <circle cx="178" cy="172" r="13" fill="#FF7AAE"/>
+          <path d="M66 112h68c10 0 16 8 16 18v42c0 18-14 30-30 30H80c-16 0-30-12-30-30v-42c0-10 6-18 16-18z" fill="#F4F1EA"/>
+          <path d="M70 190h22l-2 26c0 6-5 9-10 9h-6c-6 0-9-4-8-9z" fill="#E6E1F2"/>
+          <path d="M108 190h22l4 26c1 5-2 9-8 9h-6c-5 0-10-3-10-9z" fill="#F4F1EA"/>
+          <rect x="78" y="140" width="44" height="30" rx="8" fill="#16154A"/>
+          <circle cx="90" cy="155" r="5" fill="#FFE24A"/><circle cx="104" cy="155" r="5" fill="#FF7AAE"/><rect x="112" y="150" width="5" height="10" rx="2" fill="#6EE7B7"/>
+          <circle cx="100" cy="66" r="58" fill="#F4F1EA"/>
+          <path d="M100 6v-2" stroke="#BDB8D6" stroke-width="5" stroke-linecap="round"/>
+          <path d="M128 18l10-14" stroke="#BDB8D6" stroke-width="5" stroke-linecap="round"/><circle cx="140" cy="2" r="7" fill="#FFE24A"/>
+          <rect x="56" y="36" width="88" height="62" rx="31" fill="url(#visor)"/>
+          <path d="M70 56c4-10 13-14 24-14" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".85"/>
+          <circle cx="124" cy="80" r="5" fill="#FF7AAE" opacity=".9"/>
+          <circle cx="100" cy="66" r="58" fill="url(#hl)"/>
+        </svg>
+      </div>
+
+      <!-- cheetah, mid-leap -->
+      <div class="fo" style="--x:57%;--y:9%;--w:230px;--d:.8;--r:-8deg;--i:1">
+        <svg viewBox="0 0 280 160" filter="url(#rug)">
+          <path d="M58 72C40 64 26 46 22 26c-2-9 9-12 13-4 6 14 15 26 30 33z" fill="#FFC93C"/>
+          <g fill="#141414"><circle cx="27" cy="22" r="6"/><path d="M30 40l8-4 3 7-8 4z"/><path d="M41 56l7-5 4 6-7 5z"/></g>
+          <path d="M78 100c-20 8-42 18-62 22-8 2-10-9-3-12 18-8 38-18 56-26z" fill="#FFC93C"/>
+          <path d="M96 106c-14 14-26 30-36 44-4 6-14 1-10-6 9-16 21-32 34-46z" fill="#F2B21F"/>
+          <path d="M196 98c18 6 38 8 58 4 8-1 10 10 2 12-20 6-44 4-64-2z" fill="#FFC93C"/>
+          <path d="M184 104c14 10 26 24 34 40 3 7-7 12-11 5-8-14-19-26-31-35z" fill="#F2B21F"/>
+          <path d="M62 66c26-26 110-34 150-16 18 8 22 36 6 48-30 22-118 22-150 6-16-8-18-26-6-38z" fill="#FFC93C"/>
+          <path d="M86 98c32 10 84 10 118 0-26 14-92 14-118 0z" fill="#FFE7A8"/>
+          <g fill="#141414">
+            <ellipse cx="88" cy="70" rx="6" ry="5"/><ellipse cx="108" cy="60" rx="5" ry="6"/><ellipse cx="130" cy="56" rx="6" ry="5"/><ellipse cx="152" cy="54" rx="5" ry="5"/><ellipse cx="174" cy="58" rx="6" ry="5"/><ellipse cx="194" cy="64" rx="5" ry="5"/>
+            <ellipse cx="98" cy="84" rx="5" ry="4"/><ellipse cx="120" cy="76" rx="6" ry="5"/><ellipse cx="142" cy="72" rx="5" ry="6"/><ellipse cx="164" cy="74" rx="6" ry="5"/><ellipse cx="186" cy="80" rx="5" ry="5"/>
+            <ellipse cx="74" cy="84" rx="5" ry="5"/><ellipse cx="132" cy="90" rx="4" ry="4"/><ellipse cx="156" cy="90" rx="5" ry="4"/><ellipse cx="206" cy="84" rx="4" ry="4"/>
+          </g>
+          <path d="M218 30l6-14 10 14z" fill="#F2B21F"/><path d="M246 30l10-12 4 16z" fill="#F2B21F"/>
+          <path d="M210 52c0-20 14-30 32-30s30 12 30 30-14 28-30 28-32-10-32-28z" fill="#FFC93C"/>
+          <ellipse cx="250" cy="64" rx="18" ry="13" fill="#FFE7A8"/>
+          <circle cx="232" cy="46" r="5" fill="#141414"/><circle cx="256" cy="44" r="5" fill="#141414"/>
+          <circle cx="233.5" cy="44.5" r="1.6" fill="#fff"/><circle cx="257.5" cy="42.5" r="1.6" fill="#fff"/>
+          <path d="M231 52c-1 8 2 16 8 20M259 50c3 7 3 14-1 20" stroke="#141414" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <path d="M244 58h12l-6 6z" fill="#FF7AAE"/>
+          <path d="M250 64v5c-2 3-6 3-8 1M250 69c2 3 6 3 8 1" stroke="#141414" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- dollar bill -->
+      <div class="fo" style="--x:93%;--y:38%;--w:120px;--d:1.3;--r:18deg;--i:2">
+        <svg viewBox="0 0 200 110" filter="url(#rug)">
+          <path d="M8 18c40-10 70 8 110-2s58-10 74-4v82c-16-6-34-6-74 4S48 84 8 94z" fill="#6EE7B7"/>
+          <path d="M20 28c34-7 62 8 98-1s50-9 62-5v62c-12-4-26-4-62 5S54 76 20 83z" fill="none" stroke="#1F8F5F" stroke-width="4"/>
+          <ellipse cx="100" cy="55" rx="26" ry="30" fill="#BDF5D9"/>
+          <text x="100" y="72" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="46" fill="#11603E">$</text>
+          <circle cx="38" cy="40" r="7" fill="#1F8F5F"/><circle cx="162" cy="72" r="7" fill="#1F8F5F"/>
+        </svg>
+      </div>
+
+      <!-- clapperboard -->
+      <div class="fo" style="--x:47%;--y:80%;--w:96px;--d:.9;--r:-14deg;--i:3">
+        <svg viewBox="0 0 160 150" filter="url(#rug)">
+          <rect x="12" y="52" width="136" height="90" rx="10" fill="#1B1A28"/>
+          <rect x="12" y="52" width="136" height="24" fill="#F4F1EA"/>
+          <path d="M26 52l16 24h18L44 52zM62 52l16 24h18L80 52zM98 52l16 24h18l-16-24z" fill="#1B1A28"/>
+          <g transform="rotate(-16 14 48)">
+            <rect x="12" y="24" width="136" height="24" rx="4" fill="#4B49FF"/>
+            <path d="M28 24l16 24h18L46 24zM64 24l16 24h18L82 24zM100 24l16 24h18l-16-24z" fill="#F4F1EA"/>
+          </g>
+          <circle cx="16" cy="50" r="6" fill="#FFE24A"/>
+          <path d="M28 96h104M28 118h46M86 118h46" stroke="#F4F1EA" stroke-width="3" opacity=".55"/>
+          <text x="30" y="112" font-family="Arial Black,Arial" font-weight="900" font-size="13" fill="#FF7AAE">AIDV</text>
+        </svg>
+      </div>
+
+      <!-- ringed planet -->
+      <div class="fo m-hide" style="--x:40%;--y:6%;--w:84px;--d:.5;--r:-6deg;--i:4;--o:.9">
+        <svg viewBox="0 0 160 120" filter="url(#rug)">
+          <ellipse cx="80" cy="62" rx="70" ry="17" transform="rotate(-16 80 62)" fill="none" stroke="#8E8CFF" stroke-width="8"/>
+          <circle cx="80" cy="60" r="38" fill="url(#pl)"/>
+          <circle cx="66" cy="46" r="7" fill="#B83A75" opacity=".45"/><circle cx="94" cy="72" r="5" fill="#B83A75" opacity=".45"/><circle cx="98" cy="42" r="3.5" fill="#B83A75" opacity=".45"/>
+          <path d="M10 62a70 17 0 0 0 140 0" transform="rotate(-16 80 62)" fill="none" stroke="#8E8CFF" stroke-width="8"/>
+        </svg>
+      </div>
+
+      <!-- rocket -->
+      <div class="fo" style="--x:30%;--y:92%;--w:64px;--d:.6;--r:38deg;--i:5;--o:.9">
+        <svg viewBox="0 0 100 160" filter="url(#rug)">
+          <path d="M38 118c-4 16 2 30 12 40 10-10 16-24 12-40z" fill="#FFE24A"/>
+          <path d="M44 118c-2 10 2 18 6 24 4-6 8-14 6-24z" fill="#FF7A45"/>
+          <path d="M30 96l-18 22 4 6 22-10zM70 96l18 22-4 6-22-10z" fill="#FF7AAE"/>
+          <path d="M50 6c22 18 30 50 24 112H26C20 56 28 24 50 6z" fill="#F4F1EA"/>
+          <path d="M50 6c10 8 17 20 21 34H29C33 26 40 14 50 6z" fill="#FF7AAE"/>
+          <circle cx="50" cy="66" r="13" fill="#4B49FF"/><circle cx="50" cy="66" r="13" fill="url(#hl)"/>
+          <rect x="44" y="96" width="12" height="26" rx="6" fill="#FF7AAE"/>
+        </svg>
+      </div>
+
+      <!-- sparkles -->
+      <div class="fo sp" style="--x:70%;--y:34%;--w:26px;--d:.4;--i:6"><svg viewBox="0 0 40 40"><path d="M20 0c2 12 8 18 20 20-12 2-18 8-20 20-2-12-8-18-20-20 12-2 18-8 20-20z" fill="#FFE24A"/></svg></div>
+      <div class="fo sp" style="--x:95%;--y:12%;--w:18px;--d:.3;--i:7"><svg viewBox="0 0 40 40"><path d="M20 0c2 12 8 18 20 20-12 2-18 8-20 20-2-12-8-18-20-20 12-2 18-8 20-20z" fill="#F4F1EA"/></svg></div>
+      <div class="fo sp" style="--x:62%;--y:90%;--w:20px;--d:.35;--i:8"><svg viewBox="0 0 40 40"><path d="M20 0c2 12 8 18 20 20-12 2-18 8-20 20-2-12-8-18-20-20 12-2 18-8 20-20z" fill="#8E8CFF"/></svg></div>
+      <div class="fo sp" style="--x:6%;--y:96%;--w:16px;--d:.3;--i:9"><svg viewBox="0 0 40 40"><path d="M20 0c2 12 8 18 20 20-12 2-18 8-20 20-2-12-8-18-20-20 12-2 18-8 20-20z" fill="#FF7AAE"/></svg></div>
+    </div>
     <div class="wrap">
       <p class="eyebrow" data-rv data-i="eyebrow">Independent AI Creative Studio · Казахстан</p>
       <h1 class="d1" aria-label="Идеи становятся реальностью" data-ia="h1">
@@ -772,15 +906,31 @@ if(G&&!RM){
   G.to('#hero .wrap',{scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true},y:120,opacity:.2,ease:'none'});
 }
 
+/* ---- hero floaters: slow drift, depth parallax on pointer and scroll ---- */
+const flyOn=()=>$('#fly').classList.add('on');
+(function(){
+  const host=$('#hero'),fx=S(0,{damping:1,response:.9}),fy=S(0,{damping:1,response:.9});
+  const fos=$$('#fly .fo').map((el,i)=>({el,ph:i*1.9,d:parseFloat(el.style.getPropertyValue('--d'))||1,r:parseFloat(el.style.getPropertyValue('--r'))||0,sp:el.classList.contains('sp')}));
+  let vis=true,t=0;new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(host);
+  ticks.add(dt=>{if(!vis)return;
+    if(!RM){t+=dt;fx.t=P.x/innerWidth-.5;fy.t=P.y/innerHeight-.5}
+    const sy=Math.min(scrollY,innerHeight);
+    fos.forEach(o=>{const d=o.d;
+      const x=Math.sin(t*.31+o.ph)*22*d-fx.x*60*d,y=Math.cos(t*.23+o.ph*1.3)*26*d-fy.x*44*d-sy*.22*d;
+      const r=o.r+Math.sin(t*.27+o.ph)*9,k=o.sp?.75+.25*Math.sin(t*2.2+o.ph):1;
+      o.el.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px) rotate(${r.toFixed(2)}deg) scale(${k.toFixed(3)})`});
+  });
+})();
+
 /* ---- intro ---- */
 const intro=$('#intro');let introTl=null;
 function playIntro(){
-  if(!G||RM){intro.hidden=true;return}
+  if(!G||RM){intro.hidden=true;flyOn();return}
   intro.hidden=false;
   G.set(intro,{autoAlpha:1});G.set('.logo,.intro-sub,.counter,.skip',{autoAlpha:1});
   G.set('.logo .gap',{width:0});G.set('.reel-window',{width:0,height:0,borderRadius:10});G.set('.logo .ai span',{color:'#F4F1EA',textShadow:'0 0 0px rgba(75,73,255,0)'});
   const cnt={v:0};
-  const tl=G.timeline({onComplete:()=>{intro.hidden=true;if(heroTl&&!heroTl._done){heroTl._done=true;heroTl.play()}}});
+  const tl=G.timeline({onComplete:()=>{intro.hidden=true;flyOn();if(heroTl&&!heroTl._done){heroTl._done=true;heroTl.play()}}});
   tl.fromTo('.logo .L span',{yPercent:110},{yPercent:0,duration:.9,ease:'expo.out',stagger:.08})
     .to(cnt,{v:100,duration:2.4,ease:'power1.inOut',onUpdate:()=>$('#count').textContent=String(Math.round(cnt.v)).padStart(3,'0')},0)
     .fromTo('.intro-sub',{autoAlpha:0,y:10},{autoAlpha:1,y:0,duration:.6},.4)
@@ -804,26 +954,56 @@ if(!G&&heroTl==null){} /* without GSAP everything simply stays visible */
   R.setPixelRatio(Math.min(devicePixelRatio||1,2));host.appendChild(R.domElement);
   const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(35,1,.1,100);cam.position.z=10;
   const grp=new THREE.Group();scene.add(grp);
-  const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.5,0),new THREE.MeshPhysicalMaterial({color:0x17164a,metalness:.35,roughness:.16,clearcoat:1,clearcoatRoughness:.08,flatShading:true}));grp.add(core);
-  const cage=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(2.35,1)),new THREE.LineBasicMaterial({color:0x8E8CFF,transparent:true,opacity:.3}));grp.add(cage);
-  const orbit=new THREE.Mesh(new THREE.TorusGeometry(3,.014,8,200),new THREE.MeshBasicMaterial({color:0x4B49FF,transparent:true,opacity:.8}));orbit.rotation.x=1.15;grp.add(orbit);
-  const moon=new THREE.Mesh(new THREE.SphereGeometry(.12,24,24),new THREE.MeshBasicMaterial({color:0xF4F1EA}));grp.add(moon);
+  const std=(c,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.38,metalness:.08},o));
+  /* retro movie camera */
+  const cg=new THREE.Group();grp.add(cg);
+  const rr=new THREE.Shape(),bw=1.7,bh=1.05,br=.2;rr.moveTo(-bw/2+br,-bh/2);rr.lineTo(bw/2-br,-bh/2);rr.quadraticCurveTo(bw/2,-bh/2,bw/2,-bh/2+br);rr.lineTo(bw/2,bh/2-br);rr.quadraticCurveTo(bw/2,bh/2,bw/2-br,bh/2);rr.lineTo(-bw/2+br,bh/2);rr.quadraticCurveTo(-bw/2,bh/2,-bw/2,bh/2-br);rr.lineTo(-bw/2,-bh/2+br);rr.quadraticCurveTo(-bw/2,-bh/2,-bw/2+br,-bh/2);
+  const bodyG=new THREE.ExtrudeGeometry(rr,{depth:.62,bevelEnabled:true,bevelSize:.07,bevelThickness:.07,bevelSegments:4,curveSegments:10});bodyG.center();
+  cg.add(new THREE.Mesh(bodyG,std(0xFF6FA5)));
+  const dark=std(0x16152A,{roughness:.5});
+  const lens=new THREE.Mesh(new THREE.CylinderGeometry(.3,.4,.55,40),dark);lens.rotation.z=-Math.PI/2;lens.position.x=1.1;cg.add(lens);
+  const lring=new THREE.Mesh(new THREE.TorusGeometry(.31,.06,12,40),std(0xF4F1EA,{metalness:.4,roughness:.25}));lring.rotation.y=Math.PI/2;lring.position.x=1.38;cg.add(lring);
+  const glass=new THREE.Mesh(new THREE.CircleGeometry(.27,40),new THREE.MeshPhysicalMaterial({color:0x4B49FF,roughness:.05,metalness:.2,clearcoat:1,emissive:0x1d1b80,emissiveIntensity:.6}));glass.rotation.y=Math.PI/2;glass.position.x=1.39;cg.add(glass);
+  const vf=new THREE.Mesh(new THREE.BoxGeometry(.34,.28,.3),dark);vf.position.set(-1.02,.18,0);cg.add(vf);
+  const btn=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,.12,20),std(0xFFE24A));btn.position.set(.5,.6,.12);cg.add(btn);
+  function reel(r){const g=new THREE.Group(),m=std(0xF4F1EA,{roughness:.3});
+    g.add(new THREE.Mesh(new THREE.CylinderGeometry(r,r,.12,48),m));
+    for(let i=0;i<5;i++){const a=i/5*Math.PI*2,h=new THREE.Mesh(new THREE.CylinderGeometry(r*.2,r*.2,.13,20),dark);h.position.set(Math.cos(a)*r*.56,0,Math.sin(a)*r*.56);g.add(h)}
+    g.add(new THREE.Mesh(new THREE.CylinderGeometry(r*.16,r*.16,.18,20),std(0x4B49FF)));
+    const w=new THREE.Group();g.rotation.x=Math.PI/2;w.add(g);return w}
+  const reel1=reel(.5),reel2=reel(.4);reel1.position.set(-.42,1.02,0);reel2.position.set(.5,.92,0);cg.add(reel1,reel2);
+  /* gold coin */
+  function coinTex(){const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');
+    const g=x.createRadialGradient(96,86,10,128,128,140);g.addColorStop(0,'#FFF3B0');g.addColorStop(.55,'#F7C531');g.addColorStop(1,'#B37A12');x.fillStyle=g;x.fillRect(0,0,256,256);
+    x.strokeStyle='#C58A16';x.lineWidth=12;x.beginPath();x.arc(128,128,106,0,7);x.stroke();
+    x.font='900 168px Georgia,serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle='#9C620C';x.fillText('$',134,142);x.fillStyle='#FFE27A';x.fillText('$',128,136);
+    const t=new THREE.CanvasTexture(c);return t}
+  const coinG=new THREE.Group();grp.add(coinG);
+  const faceM=std(0xffffff,{map:coinTex(),metalness:.3,roughness:.32});
+  const rim=new THREE.Mesh(new THREE.CylinderGeometry(1,1,.2,64,1,true),std(0xE3A92B,{metalness:.55,roughness:.3}));rim.rotation.x=Math.PI/2;
+  const front=new THREE.Mesh(new THREE.CircleGeometry(1,64),faceM),back=front.clone();front.position.z=.1;back.position.z=-.1;back.rotation.y=Math.PI;
+  coinG.add(rim,front,back);
   const N=900,pos=new Float32Array(N*3);for(let i=0;i<N;i++){const r=3.6+Math.random()*7,th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);pos[i*3]=r*Math.sin(ph)*Math.cos(th);pos[i*3+1]=r*Math.sin(ph)*Math.sin(th);pos[i*3+2]=r*Math.cos(ph)}
   const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
   const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xBEBCFF,size:.03,transparent:true,opacity:.7}));scene.add(pts);
-  scene.add(new THREE.AmbientLight(0x404070,.7));
-  const l1=new THREE.PointLight(0x4B49FF,7,30);l1.position.set(-4,2,5);scene.add(l1);
-  const l2=new THREE.PointLight(0xFFE9C9,3.2,30);l2.position.set(4,-1.5,5);scene.add(l2);
-  const l3=new THREE.DirectionalLight(0xffffff,.6);l3.position.set(0,5,5);scene.add(l3);
-  function size(){const w=host.clientWidth,h=host.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();const wide=w>900;grp.position.x=wide?2.7:0;grp.scale.setScalar(wide?1:.8)}
+  scene.add(new THREE.AmbientLight(0x6a6a9a,.55));
+  const l1=new THREE.PointLight(0x6F6DFF,2.4,40);l1.position.set(-4,3,6);scene.add(l1);
+  const l2=new THREE.PointLight(0xFFE9C9,1.1,40);l2.position.set(6,-2,6);scene.add(l2);
+  const l3=new THREE.DirectionalLight(0xffffff,.75);l3.position.set(2,5,6);scene.add(l3);
+  /* place by screen fraction so the objects stay clear of the headline */
+  function at(o,fx,fy){const hh=Math.tan(THREE.MathUtils.degToRad(cam.fov/2))*cam.position.z,hw=hh*cam.aspect;o.userData.bx=(fx*2-1)*hw;o.userData.by=(1-fy*2)*hh}
+  function size(){const w=host.clientWidth,h=host.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();const wide=w>900;
+    at(cg,wide?.7:.72,wide?.56:.8);cg.scale.setScalar(wide?.5:.36);at(coinG,wide?.88:.84,wide?.66:.93);coinG.scale.setScalar(wide?.36:.26)}
   size();addEventListener('resize',size);
   const gx=S(0,{damping:.8,response:.6}),gy=S(0,{damping:.8,response:.6});
   let vis=true,t=0;new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(host);
   ticks.add(dt=>{if(!vis)return;
     if(!RM){t+=dt;gy.t=(P.x/innerWidth-.5)*.9;gx.t=(P.y/innerHeight-.5)*.6;
-      core.rotation.y+=dt*.3;core.rotation.x+=dt*.12;cage.rotation.y-=dt*.12;cage.rotation.z+=dt*.05;orbit.rotation.z+=dt*.25;pts.rotation.y+=dt*.02;
-      moon.position.set(Math.cos(t*.8)*3,Math.sin(t*.8)*3*Math.cos(1.15),Math.sin(t*.8)*3*Math.sin(1.15));}
-    grp.rotation.x=gx.x;grp.rotation.y=gy.x;grp.position.y=scrollY*.004;
+      reel1.rotation.z-=dt*1.6;reel2.rotation.z-=dt*2;coinG.rotation.y+=dt*1.1;pts.rotation.y+=dt*.02}
+    cg.position.set(cg.userData.bx+Math.sin(t*.4)*.18,cg.userData.by+Math.sin(t*.55)*.22,0);
+    cg.rotation.set(.18+gx.x*.6+Math.sin(t*.3)*.08,-.55+gy.x*.8,.08+Math.sin(t*.35)*.1);
+    coinG.position.set(coinG.userData.bx+Math.cos(t*.33)*.15,coinG.userData.by+Math.sin(t*.48+1)*.2,0);coinG.rotation.x=gx.x*.6+.25;coinG.rotation.z=.3+gy.x*.3;
+    grp.position.y=scrollY*.004;
     R.render(scene,cam);
   });
 })();
