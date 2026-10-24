@@ -442,16 +442,21 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 </div>
 <div class="toast" id="toast" hidden></div>
 
+<script>/* safety net: if a script error ever stops the intro, remove it so the site is never stuck on a black screen */
+setTimeout(function(){var i=document.getElementById('intro');if(i)i.hidden=true},9000);</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
 (function(){
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE=matchMedia('(pointer:fine)').matches;
 const G=window.gsap;
-if(G&&window.ScrollTrigger)G.registerPlugin(ScrollTrigger);
+/* the intro plays on every visit, so always start at the top: a restored scroll position on reload made ScrollTrigger crash and the intro never hid */
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+window.scrollTo(0,0);
+if(G&&window.ScrollTrigger){G.registerPlugin(ScrollTrigger);ScrollTrigger.clearScrollMemory('manual')}
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 
