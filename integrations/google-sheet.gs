@@ -23,14 +23,15 @@ function doPost(e) {
     if (d.secret !== PropertiesService.getScriptProperties().getProperty('SHEET_SECRET')) return out({ ok: false, error: 'auth' });
     const L = d.labels || {};
     // a leading ' stops Sheets from treating user text such as "=..." as a formula
-    const safe = v => { v = String(v == null ? '' : v); return /^[=+\-@]/.test(v) ? "'" + v : v; };
+    const safe = v => { v = String(v == null ? '' : v); return /^[=+\-@\t\r]/.test(v) ? "'" + v : v; };
     const lock = LockService.getScriptLock(); lock.waitLock(10000);
     try {
       sheet_().appendRow([new Date(d.ts), safe(d.name), safe(L.svc || d.svc), safe(d.idea || '—'), safe(L.when || d.when), safe(L.budget || d.budget), safe(L.via || d.via), safe(d.reach), d.lang || 'RU', 'да', new Date(d.consentAt)]);
     } finally { lock.releaseLock(); }
     return out({ ok: true });
   } catch (err) {
-    return out({ ok: false, error: String(err) });
+    console.error(err); // details stay in the Apps Script log, the caller only sees a generic error
+    return out({ ok: false, error: 'server' });
   }
 }
 

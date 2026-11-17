@@ -27,6 +27,21 @@ function readBody(req) {
   });
 }
 
+// Only our own pages may post briefs. Browsers always send Origin on a cross-site POST.
+const ALLOWED_ORIGINS = ['https://aidvstudio.com', 'https://www.aidvstudio.com', 'https://aidvstudios.com', 'https://www.aidvstudios.com'];
+const originOk = o => !o || ALLOWED_ORIGINS.includes(o) || /^https:\/\/aidvstudio[a-z0-9-]*\.vercel\.app$/.test(o);
+
+// Best-effort flood guard: max 5 briefs per IP per 10 minutes on a warm instance.
+// Not a hard limit (serverless instances do not share memory), but it stops simple spam loops.
+const hits = new Map();
+function tooMany(ip) {
+  const now = Date.now(), win = 10 * 60 * 1000;
+  const list = (hits.get(ip) || []).filter(t => now - t < win);
+  list.push(now); hits.set(ip, list);
+  if (hits.size > 5000) hits.clear();
+  return list.length > 5;
+}
+
 async function withTimeout(p, ms) {
   const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), ms);
   try { return await p(ctl.signal); } finally { clearTimeout(t); }
@@ -34,7 +49,11 @@ async function withTimeout(p, ms) {
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ ok: false, error: 'method' }); }
+  if (!originOk(req.headers.origin)) return res.status(403).json({ ok: false, error: 'origin' });
+  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
+  if (tooMany(ip)) return res.status(429).json({ ok: false, error: 'rate' });
   const b = await readBody(req);
+  if (!b || typeof b !== 'object' || Array.isArray(b)) return res.status(400).json({ ok: false, error: 'body' });
 
   // honeypot: real people never fill the hidden "company" field
   if (b.company) return res.status(200).json({ ok: true });
