@@ -59,7 +59,8 @@ button{font:inherit;color:inherit}
 .logo{display:flex;align-items:flex-end;font-family:var(--f-display);font-weight:800;font-size:clamp(72px,21vw,300px);line-height:.8;letter-spacing:-.04em;position:relative;z-index:2}
 .logo .L{display:inline-block;overflow:hidden;padding:0 .01em .04em}
 .logo .L span{display:inline-block}
-.logo .gap{display:inline-block;width:0}
+.logo .grp{display:inline-flex;align-items:flex-end;will-change:transform,filter}
+.swoosh{position:absolute;left:50%;top:50%;width:0;height:2px;transform:translate(-50%,-50%);background:linear-gradient(90deg,transparent,rgba(142,140,255,.9),#fff,rgba(142,140,255,.9),transparent);filter:blur(1px);box-shadow:0 0 24px rgba(142,140,255,.8);z-index:3;opacity:0}
 .intro-sub{position:absolute;left:0;right:0;bottom:22%;text-align:center;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--dim);z-index:2}
 .counter{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));font-family:var(--f-display);font-size:clamp(28px,6vw,64px);font-variant-numeric:tabular-nums;color:var(--dim);z-index:2}
 .skip{position:absolute;left:max(20px,env(safe-area-inset-left,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));background:none;border:1px solid var(--line);color:var(--dim);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border-radius:99px;cursor:pointer;z-index:3}
@@ -96,9 +97,16 @@ header.nav::after{content:"";position:absolute;left:0;right:0;top:100%;height:24
 .hero{position:relative;overflow:hidden;min-height:min(92vh,860px);display:flex;align-items:center}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 72% 45%,rgba(75,73,255,.28),transparent 70%),radial-gradient(40% 50% at 10% 90%,rgba(142,140,255,.10),transparent 70%)}
 #gl{position:absolute;inset:0}
+/* two hands reaching for each other: human from the left, AI from the right */
+.hands{position:absolute;inset:0;pointer-events:none;overflow:hidden;--hw:min(54vw,980px)}
+.hand{position:absolute;top:var(--ht,17%);width:var(--hw);height:auto;max-width:none;opacity:.85;will-change:transform}
+.hand.l{right:50%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
+.hand.r{left:50%;width:calc(var(--hw)*992/942);-webkit-mask-image:linear-gradient(270deg,transparent,#000 30%);mask-image:linear-gradient(270deg,transparent,#000 30%)}
+@media (max-width:900px){.hands{--hw:82vw;--ht:14%}.hand{opacity:.8}}
 #gl canvas{display:block;width:100%!important;height:100%!important}
 @media (max-width:900px){#gl{opacity:.55}}
 .hero .wrap{position:relative;width:100%;padding-block:clamp(56px,9vw,110px)}
+.ch{display:inline-block;will-change:transform}
 .x3d{display:inline-block;color:var(--fg);will-change:transform}
 .hero-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:44px}
 .hero-foot p{max-width:430px;margin:0;color:var(--dim);font-size:17px}
@@ -191,13 +199,34 @@ section{padding-block:clamp(64px,9vw,128px)}
 .contact .wrap{position:relative}
 .contact .d1{margin-bottom:48px}
 .cols{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(32px,6vw,90px)}
-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-form .full{grid-column:1/-1}
+form{display:block}
+.fprog{display:flex;align-items:center;gap:14px;margin-bottom:26px;font:700 12px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.fbar{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.fbar i{display:block;height:100%;width:33.3%;background:var(--fg);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+fieldset.fs{border:0;margin:0;padding:0;min-width:0;display:grid;gap:26px}
+.q{font:500 clamp(18px,1.8vw,22px)/1.25 var(--f-display);letter-spacing:-.01em;text-transform:none;color:var(--fg)}
+.q em{font:500 12px var(--f-body);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-left:8px}
+.fgrp{display:flex;flex-direction:column;gap:12px;min-width:0}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:flex;flex-direction:column;gap:2px;height:100%;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(244,241,234,.04);font-size:15px;font-weight:500;line-height:1.35;transition:background .2s,border-color .2s,color .2s,transform .1s}
+.opt span b{font:700 11px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.opt:hover span{border-color:rgba(244,241,234,.35)}
+.opt:active span{transform:scale(.98)}
+.opt input:checked+span{background:var(--fg);border-color:var(--fg);color:#0B0D24}
+.opt input:checked+span b{color:#3a3d5c}
+.opt input:focus-visible+span{outline:2px solid var(--ultra-hi);outline-offset:2px}
+.fnav{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn.back{background:transparent;color:var(--fg);box-shadow:none;border:1px solid var(--line)}
+.ferr{font-size:14px;color:#FFD29A;min-height:1.4em}
+@media (max-width:520px){.opts{grid-template-columns:1fr}}
 label.f{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 input[type=text],select,textarea{font:500 17px var(--f-body);color:var(--fg);background:transparent;border:0;border-bottom:1.5px solid var(--line);padding:10px 2px;border-radius:0;width:100%;text-transform:none;letter-spacing:0;transition:border-color .2s}
 input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--ultra-hi)}
 select option{background:var(--bg-2)}
 textarea{resize:vertical;min-height:96px}
+input::placeholder,textarea::placeholder{color:rgba(244,241,234,.4)}
 .who{display:flex;gap:4px;background:rgba(244,241,234,.05);border:1px solid var(--line);border-radius:99px;padding:4px;width:max-content;max-width:100%}
 .who input{position:absolute;opacity:0;pointer-events:none}
 .who label{border-radius:99px;padding:9px 18px;font-size:14px;font-weight:700;cursor:pointer;color:var(--dim)}
@@ -207,14 +236,16 @@ textarea{resize:vertical;min-height:96px}
 .consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ultra);flex:none}
 .consent a{font-weight:700;color:var(--ultra-hi)}
 .req{color:var(--ultra-hi)}
-form .btn:disabled{background:rgba(244,241,234,.1);color:var(--dim);box-shadow:none;cursor:not-allowed}
+form .btn:disabled,form .btn[aria-disabled="true"]{background:rgba(244,241,234,.1);color:var(--dim);box-shadow:none;cursor:not-allowed}
 .fhint{font-size:13px;color:var(--dim);align-self:center}
-.success{grid-column:1/-1;background:var(--bg-3);border:1px solid var(--line);padding:24px;border-radius:16px;font-size:16px}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.success .btn{margin-top:16px}
+.success{background:var(--bg-3);border:1px solid var(--line);padding:24px;border-radius:16px;font-size:16px}
 .reach{display:flex;flex-direction:column;gap:24px}
 .reach .k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
 .reach .v a,footer a{text-decoration:none}.reach .v a:hover,footer a:hover{color:var(--ultra-hi)}
 .reach .v{font-family:var(--f-display);font-weight:500;font-size:20px;letter-spacing:-.01em;user-select:all;overflow-wrap:anywhere}
-@media (max-width:780px){.cols{grid-template-columns:1fr}form{grid-template-columns:1fr}}
+@media (max-width:780px){.cols{grid-template-columns:1fr}}
 
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-block:30px calc(70px + env(safe-area-inset-bottom,0px));font-size:13px;color:var(--dim);border-top:1px solid var(--line)}
 
@@ -225,6 +256,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 .mcap{position:absolute;left:0;right:0;bottom:0;padding:18px 20px;background:rgba(10,10,16,.45);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);font-size:14px}
 .mcap b{font-family:var(--f-display);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:22px;display:block}
 .mx{position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(10,10,16,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:20px;cursor:pointer}
+
+/* privacy policy dialog */
+.policy .pbox{position:relative;width:min(760px,100%);max-height:min(86vh,900px);display:flex;flex-direction:column;background:var(--bg-2);border:1px solid var(--line);border-radius:18px;box-shadow:0 40px 120px rgba(0,0,0,.6);overflow:hidden}
+.policy .pbody{overflow-y:auto;overscroll-behavior:contain;padding:clamp(22px,4vw,44px);padding-top:68px;font-size:15px;line-height:1.65;color:var(--dim)}
+.policy .pbody h2{margin:0 0 6px;font-family:var(--f-display);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(18px,4.4vw,34px);overflow-wrap:anywhere;line-height:1.05;color:var(--fg)}
+.policy .pbody h3{margin:26px 0 8px;font-family:var(--f-display);font-weight:500;font-size:17px;letter-spacing:-.01em;color:var(--fg)}
+.policy .pbody p{margin:0 0 10px;max-width:68ch}
+.policy .pbody b{color:var(--fg);font-weight:700}
+.policy .pmeta{font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.policy .mx{z-index:2}
+footer a[data-policy]{text-decoration:underline;text-underline-offset:3px}
 
 /* page transitions */
 #pt{position:fixed;inset:0;z-index:100;pointer-events:none}
@@ -255,8 +297,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 <div id="intro" aria-hidden="true">
   <div class="reel-window"><div class="reel"></div></div>
   <div class="logo">
-    <span class="L ai"><span>A</span></span><span class="L ai"><span>I</span></span><span class="gap"></span><span class="L"><span>D</span></span><span class="L"><span>V</span></span>
+    <span class="grp g1"><span class="L ai"><span>A</span></span><span class="L ai"><span>I</span></span></span><span class="grp g2"><span class="L"><span>D</span></span><span class="L"><span>V</span></span></span>
   </div>
+  <div class="swoosh"></div>
   <div class="intro-sub">Independent AI Creative Studio</div>
   <div class="counter" id="count">000</div>
   <button class="skip press" id="skip" type="button" data-i="skip">Пропустить</button>
@@ -299,10 +342,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 <main id="top">
   <section class="hero" id="hero" style="padding-block:0">
     <div id="gl" aria-hidden="true"></div>
+    <div class="hands" aria-hidden="true"><img class="hand l" id="handL" src="img/hand-left.webp" alt="" width="942" height="371" decoding="async"><img class="hand r" id="handR" src="img/hand-right.webp" alt="" width="992" height="424" decoding="async"></div>
     <div class="wrap">
       <p class="eyebrow" data-rv data-i="eyebrow">Independent AI Creative Studio · Казахстан</p>
       <h1 class="d1" aria-label="Идеи становятся реальностью" data-ia="h1">
-        <span class="ln"><span data-i="h1a">Идеи</span></span>
+        <span class="ln" id="ideaLn"><span data-i="h1a" id="ideaW"><span class="ch">И</span><span class="ch de">Д</span><span class="ch de">Е</span><span class="ch">И</span></span></span>
         <span class="ln"><span class="lt u" data-i="h1b">становятся</span></span>
         <span class="ln" style="overflow:visible"><span><span class="x3d" id="x3d" data-i="h1c">Реальностью</span></span></span>
       </h1>
@@ -403,21 +447,57 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
       <h2 class="d1"><span class="ln"><span data-i="ct1">Давай</span></span><span class="ln"><span class="lt u" data-i="ct2">создадим</span></span><span class="ln"><span data-i="ct3">то, что запомнят</span></span></h2>
       <div class="cols">
         <form id="brief" novalidate data-rv>
-          <div class="full who" role="radiogroup" aria-label="Для кого проект" data-ia="who">
-            <input type="radio" name="who" id="who-brand" value="brand" checked><label for="who-brand" data-i="whoB">Я бренд</label>
-            <input type="radio" name="who" id="who-me" value="me"><label for="who-me" data-i="whoM">Это для меня</label>
-          </div>
-          <label class="f" for="name"><span data-i="fName">Имя</span> <input type="text" id="name" autocomplete="name" placeholder="Как к вам обращаться" data-ip="phName"></label>
-          <label class="f" for="reach"><span data-i="fReach">Как связаться</span> <input type="text" id="reach" placeholder="WhatsApp, Telegram или email" data-ip="phReach"></label>
-          <label class="f" for="svcSel"><span data-i="fSvc">Услуга</span>
-            <select id="svcSel"><option>AIDV Commercials</option><option>AIDV Visuals</option><option>AIDV Digital</option><option>AIDV Stories</option><option data-i="unsure">Пока не знаю</option></select>
-          </label>
-          <label class="f" for="when"><span data-i="fWhen">Сроки</span> <input type="text" id="when" placeholder="Например, к 1 декабря" data-ip="phWhen"></label>
-          <label class="f full" for="idea"><span data-i="fIdea">Идея своими словами</span> <textarea id="idea" placeholder="Что хотите показать, для кого и где это будет жить" data-ip="phIdea"></textarea></label>
-          <div class="full consent"><input type="checkbox" id="agree"><label for="agree" data-i="agree">Я согласен(на) на обработку персональных данных и принимаю <a href="#contact">политику конфиденциальности</a> <span class="req">*</span></label></div>
-          <div class="full consent"><input type="checkbox" id="news"><label for="news" data-i="news">Хочу получать новости и новые работы AIDV (необязательно)</label></div>
-          <button class="btn press" id="send" type="submit" disabled data-i="send">Отправить бриф</button>
-          <span class="fhint" id="fhint">Отметьте согласие, чтобы отправить</span>
+          <div class="hp" aria-hidden="true"><label>Company <input type="text" name="company" id="company" tabindex="-1" autocomplete="off"></label></div>
+          <div class="fprog"><span id="fstep">1 / 3</span><div class="fbar"><i id="fbar"></i></div><span id="fstepName" data-i="stN1">О проекте</span></div>
+
+          <fieldset class="fs" data-s="1">
+            <label class="fgrp" for="name"><span class="q" data-i="q1">Как к вам обращаться?</span><input type="text" id="name" autocomplete="name" placeholder="Ваше имя" data-ip="phName"></label>
+            <div class="fgrp" role="radiogroup" aria-labelledby="q2"><span class="q" id="q2" data-i="q2">Какая услуга вам нужна?</span>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="svc" value="ad"><span data-i="oAd">AI-реклама для компании</span></label>
+                <label class="opt"><input type="radio" name="svc" value="film"><span data-i="oFilm">AI личный фильм, поздравление, Love Story</span></label>
+                <label class="opt"><input type="radio" name="svc" value="web"><span data-i="oWeb">Сайт для компании или лендинг</span></label>
+                <label class="opt"><input type="radio" name="svc" value="other"><span data-i="oOther">Другое</span></label>
+              </div>
+            </div>
+            <label class="fgrp" for="idea"><span class="q"><span data-i="q3">Опишите идею</span><em data-i="optional">необязательно</em></span><textarea id="idea" placeholder="Что хотите создать, для кого и где это будет жить" data-ip="phIdea"></textarea></label>
+            <div class="fnav"><button class="btn press" type="button" data-next data-i="next">Далее →</button><span class="ferr" aria-live="polite"></span></div>
+          </fieldset>
+
+          <fieldset class="fs" data-s="2" hidden>
+            <div class="fgrp" role="radiogroup" aria-labelledby="q4"><span class="q" id="q4" data-i="q4">Когда нужен результат?</span>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="when" value="fire"><span><b data-i="t1b">Срочно</b><i data-i="t1" style="font-style:normal">Горит, нужно как можно скорее</i></span></label>
+                <label class="opt"><input type="radio" name="when" value="month"><span><b data-i="t2b">Спокойно</b><i data-i="t2" style="font-style:normal">Есть немного времени в запасе</i></span></label>
+                <label class="opt"><input type="radio" name="when" value="calm"><span><b data-i="t3b">Не срочно</b><i data-i="t3" style="font-style:normal">Без спешки, важнее качество</i></span></label>
+                <label class="opt"><input type="radio" name="when" value="unknown"><span><b data-i="t4b">Гибко</b><i data-i="t4" style="font-style:normal">Пока не знаю, обсудим</i></span></label>
+              </div>
+            </div>
+            <div class="fgrp" role="radiogroup" aria-labelledby="q5"><span class="q" id="q5" data-i="q5">Примерный бюджет</span>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="budget" value="50-150"><span><b data-i="b1b">Старт</b><i data-i="b1" style="font-style:normal">50–150 тыс ₸</i></span></label>
+                <label class="opt"><input type="radio" name="budget" value="150-300"><span><b data-i="b2b">Оптимум</b><i data-i="b2" style="font-style:normal">150–300 тыс ₸</i></span></label>
+                <label class="opt"><input type="radio" name="budget" value="300+"><span><b data-i="b3b">Премиум</b><i data-i="b3" style="font-style:normal">от 300 тыс ₸</i></span></label>
+                <label class="opt"><input type="radio" name="budget" value="unknown"><span><b data-i="b4b">Не знаю</b><i data-i="b4" style="font-style:normal">Подскажите по бюджету</i></span></label>
+              </div>
+            </div>
+            <div class="fnav"><button class="btn back press" type="button" data-back data-i="back">← Назад</button><button class="btn press" type="button" data-next data-i="next">Далее →</button><span class="ferr" aria-live="polite"></span></div>
+          </fieldset>
+
+          <fieldset class="fs" data-s="3" hidden>
+            <div class="fgrp" role="radiogroup" aria-labelledby="q6"><span class="q" id="q6" data-i="q6">Как удобнее связаться?</span>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="via" value="tg"><span>Telegram</span></label>
+                <label class="opt"><input type="radio" name="via" value="wa"><span>WhatsApp</span></label>
+                <label class="opt"><input type="radio" name="via" value="call"><span data-i="vCall">Звонок по телефону</span></label>
+                <label class="opt"><input type="radio" name="via" value="mail"><span>E-mail</span></label>
+              </div>
+            </div>
+            <label class="fgrp" for="reach"><span class="q" data-i="q7">Ваш контакт</span><input type="text" id="reach" placeholder="Номер телефона или @username" data-ip="phReach"></label>
+            <div class="consent"><input type="checkbox" id="agree"><label for="agree" data-i="agree">Я согласен(на) на сбор и обработку моих персональных данных, включая трансграничную передачу, и принимаю <a href="#privacy" data-policy>политику конфиденциальности</a> <span class="req">*</span></label></div>
+            <div class="fnav"><button class="btn back press" type="button" data-back data-i="back">← Назад</button><button class="btn press" id="send" type="submit" disabled data-i="send">Отправить заявку</button><span class="fhint" id="fhint">Отметьте согласие, чтобы отправить</span></div>
+            <span class="ferr" aria-live="polite"></span>
+          </fieldset>
         </form>
         <div class="reach" data-rv>
           <div><div class="k">Owner</div><div class="v">Almas DV</div></div>
@@ -431,7 +511,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 AIDV Studios · Ideas made real</span><span class="soc"><a href="https://instagram.com/almas.aidv" target="_blank" rel="noopener">Instagram</a> · <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">Telegram</a> · <a href="https://wa.me/77780093967" target="_blank" rel="noopener">WhatsApp</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 AIDV Studios · Ideas made real · <a href="#privacy" data-policy data-i="polLink">Политика конфиденциальности</a></span><span class="soc"><a href="https://instagram.com/almas.aidv" target="_blank" rel="noopener">Instagram</a> · <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">Telegram</a> · <a href="https://wa.me/77780093967" target="_blank" rel="noopener">WhatsApp</a></span></div></footer>
 
 <div class="modal" id="modal" hidden>
   <div class="scrim" id="scrim"></div>
@@ -439,6 +519,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
     <div class="mcap"><b id="mtitle"></b><span id="msub"></span> · <span data-i="player">здесь будет плеер с роликом</span></div>
     <button class="mx press" id="mclose" type="button" aria-label="Закрыть" data-ia="close">×</button>
   </div>
+</div>
+<div class="modal policy" id="policy" role="dialog" aria-modal="true" aria-labelledby="policyBody" hidden>
+  <div class="scrim"></div>
+  <div class="pbox"><button class="mx press" id="policyClose" type="button" aria-label="Закрыть" data-ia="close">×</button><div class="pbody" id="policyBody" data-lenis-prevent tabindex="0"></div></div>
 </div>
 <div class="toast" id="toast" hidden></div>
 
@@ -484,7 +568,7 @@ addEventListener('pointermove',e=>{P.x=e.clientX;P.y=e.clientY},{passive:true});
 
 /* ---- smooth scroll ---- */
 let lenis=null;
-if(!RM&&window.Lenis){try{lenis=new Lenis({lerp:.1});if(G){lenis.on('scroll',()=>window.ScrollTrigger&&ScrollTrigger.update());G.ticker.add(t=>lenis.raf(t*1000));G.ticker.lagSmoothing(0)}else{ticks.add((dt,now)=>lenis.raf(now))}}catch(e){lenis=null}}
+if(!RM&&window.Lenis){try{lenis=new Lenis({lerp:.05,wheelMultiplier:.85,touchMultiplier:1.4});if(G){lenis.on('scroll',()=>window.ScrollTrigger&&ScrollTrigger.update());G.ticker.add(t=>lenis.raf(t*1000));G.ticker.lagSmoothing(0)}else{ticks.add((dt,now)=>lenis.raf(now))}}catch(e){lenis=null}}
 
 /* ---- scroll velocity (drives marquees, ring, bands) ---- */
 let lastY=scrollY;const vel=S(0,{damping:1,response:.3});
@@ -633,17 +717,156 @@ ticks.add(()=>{if(modal.hidden)return;const p=mp.x;
   const q=clamp(p,0,1);scrim.style.opacity=q;scrim.style.backdropFilter=scrim.style.webkitBackdropFilter=`blur(${(q*14).toFixed(1)}px)`;
 });
 
-/* ---- doors preselect form ---- */
-$$('.door').forEach(d=>d.addEventListener('click',()=>{$(d.dataset.who==='me'?'#who-me':'#who-brand').checked=true}));
+/* ---- doors preselect the service in the form ---- */
+$$('.door').forEach(d=>d.addEventListener('click',()=>{const r=$(`input[name=svc][value="${d.dataset.who==='me'?'film':'ad'}"]`);if(r)r.checked=true}));
 
-/* ---- consent gate ---- */
-const agree=$('#agree'),send=$('#send'),fh=$('#fhint');
+/* ---- brief: three steps, consent gate on the last one ---- */
+const form=$('#brief'),steps=$$('#brief .fs'),agree=$('#agree'),send=$('#send'),fh=$('#fhint');
+let fsN=1;
+const val=n=>{const r=form.querySelector(`input[name=${n}]:checked`);return r?r.value:''};
+const lab=n=>{const r=form.querySelector(`input[name=${n}]:checked`);if(!r)return '';const sp=r.nextElementSibling,ps=[...sp.children].map(c=>c.textContent.trim()).filter(Boolean);return ps.length>1?ps.join(' · '):sp.textContent.trim()};
+function showStep(n,dir){
+  const from=steps[fsN-1],to=steps[n-1];fsN=n;
+  $('#fstep').textContent=n+' / 3';$('#fbar').style.width=(n/3*100)+'%';
+  const nm=$('#fstepName');nm.dataset.i='stN'+n;nm.innerHTML=T('stN'+n);
+  if(G&&!RM&&from!==to){G.to(from,{x:-40*dir,opacity:0,duration:.25,ease:'power2.in',onComplete:()=>{from.hidden=true;G.set(from,{x:0,opacity:1});to.hidden=false;G.fromTo(to,{x:40*dir,opacity:0},{x:0,opacity:1,duration:.5,ease:'expo.out'})}})}
+  else{from.hidden=true;to.hidden=false}
+}
+function check(n){
+  if(n===1){if(!$('#name').value.trim())return 'errName';if(!val('svc'))return 'errSvc'}
+  if(n===2){if(!val('when'))return 'errWhen';if(!val('budget'))return 'errBudget'}
+  if(n===3){if(!val('via'))return 'errVia';if(!$('#reach').value.trim())return 'errReach'}
+  return '';
+}
+function err(fs,k){const e=fs.querySelector('.ferr');e.textContent=k?T(k):'';if(k&&G&&!RM)G.fromTo(fs.querySelector('.fnav'),{x:-8},{x:0,duration:.5,ease:'elastic.out(1,.3)'})}
+form.addEventListener('click',e=>{
+  if(e.target.closest('[data-next]')){const k=check(fsN);err(steps[fsN-1],k);if(!k)showStep(fsN+1,1)}
+  if(e.target.closest('[data-back]')){err(steps[fsN-1],'');showStep(fsN-1,-1)}
+});
+form.addEventListener('change',e=>{if(e.target.type==='radio')err(steps[fsN-1],'');
+  if(e.target.name==='via')$('#reach').placeholder=T('ph_'+e.target.value);});
 agree.addEventListener('change',()=>{send.disabled=!agree.checked;fh.textContent=T(agree.checked?'ready':'tick')});
-$('#brief').addEventListener('submit',e=>{e.preventDefault();if(!agree.checked)return;
-  const v=id=>($('#'+id)||{}).value||'';
-  const L=T('wa');const msg=[L[0],`${L[1]}: ${$('#who-me').checked?T('whoM'):T('whoB')}`,`${L[2]}: ${v('name')}`,`${L[3]}: ${v('reach')}`,`${L[4]}: ${v('svcSel')}`,`${L[5]}: ${v('when')}`,`${L[6]}: ${v('idea')}`].join('\n');
-  window.open('https://wa.me/77780093967?text='+encodeURIComponent(msg),'_blank','noopener');
-  const ok=document.createElement('div');ok.className='success';ok.innerHTML=T('success');e.target.replaceChildren(ok)});
+form.addEventListener('submit',e=>{e.preventDefault();if(!agree.checked)return;
+  const k=check(3);err(steps[2],k);if(k)return;
+  const L=T('wa');const msg=[L[0],`${L[1]}: ${$('#name').value.trim()}`,`${L[2]}: ${lab('svc')}`,`${L[3]}: ${$('#idea').value.trim()||'—'}`,`${L[4]}: ${lab('when')}`,`${L[5]}: ${lab('budget')}`,`${L[6]}: ${lab('via')}`,`${L[7]}: ${$('#reach').value.trim()}`].join('\n');
+  const wa='https://wa.me/77780093967?text='+encodeURIComponent(msg);
+  const lb={};['svc','when','budget','via'].forEach(n=>lb[n]=lab(n));
+  const body={name:$('#name').value.trim(),svc:val('svc'),idea:$('#idea').value.trim(),when:val('when'),budget:val('budget'),via:val('via'),reach:$('#reach').value.trim(),agree:agree.checked,lang:['RU','EN','KZ'][LI],labels:lb,company:$('#company').value};
+  const done=ok=>{const box=document.createElement('div');box.className='success';box.innerHTML=T(ok?'sentOk':'sentFail')+`<br><a class="btn press" href="${wa}" target="_blank" rel="noopener">${T('waBtn')}</a>`;form.replaceChildren(box)};
+  send.disabled=true;send.textContent=T('sending');
+  /* the brief goes to our server, which notifies Telegram and saves it to the sheet; if that fails the client can still send it via WhatsApp */
+  fetch('/api/brief',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(r=>r.ok?r.json():{ok:false}).then(j=>done(!!j.ok)).catch(()=>done(false))});
+form.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'&&e.target.type==='text'&&fsN<3){e.preventDefault();const b=steps[fsN-1].querySelector('[data-next]');b&&b.click()}});
+
+/* ---- privacy policy (Law of the RK No. 94-V "On personal data and their protection"); opened from the consent checkbox and the footer ---- */
+const OP_ID='[ИИН/БИН будет указан]';
+const POLICY=[
+`<h2>Политика конфиденциальности</h2>
+<p class="pmeta">Редакция от 17 ноября 2026 года</p>
+<h3>1. Общие положения</h3>
+<p>1.1. Настоящая Политика определяет порядок сбора, обработки и защиты персональных данных пользователей сайта aidvstudio.com (далее «Сайт») и составлена в соответствии с Законом Республики Казахстан от 21 мая 2013 года № 94-V «О персональных данных и их защите» (далее «Закон»).</p>
+<p>1.2. Собственник и оператор персональных данных: Almas DV (AIDV Studios), ИИН/БИН: ${OP_ID}, Республика Казахстан. Контакты: aidvstudio@gmail.com, +7 (778) 009 39 67.</p>
+<p>1.3. Отправляя заявку через форму на Сайте и отмечая согласие, пользователь подтверждает, что ознакомился с Политикой и дает согласие на сбор и обработку своих персональных данных на изложенных условиях.</p>
+<h3>2. Основные понятия</h3>
+<p><b>Персональные данные</b>: сведения, относящиеся к определенному или определяемому на их основании субъекту персональных данных.<br><b>Субъект персональных данных</b>: физическое лицо, к которому относятся персональные данные (пользователь Сайта).<br><b>Собственник и оператор</b>: лицо, которое владеет базой персональных данных и осуществляет их сбор, обработку и защиту.<br><b>Обработка персональных данных</b>: действия по накоплению, хранению, изменению, использованию, распространению, обезличиванию, блокированию и уничтожению персональных данных.<br><b>Трансграничная передача</b>: передача персональных данных на территорию иностранных государств.<br><b>Уничтожение</b>: действия, после которых восстановить персональные данные невозможно.</p>
+<h3>3. Какие данные мы обрабатываем</h3>
+<p>Только данные, которые пользователь сам указывает в форме заявки: имя или обращение; выбранный способ связи и контакт (номер телефона, имя пользователя в Telegram или адрес электронной почты); сведения о проекте (выбранная услуга, описание идеи, сроки, примерный бюджет).</p>
+<p>Сайт не собирает документы, удостоверяющие личность, биометрические и иные данные ограниченного доступа. Сайт не использует рекламные и аналитические cookie. В браузере сохраняется только выбранный язык интерфейса.</p>
+<h3>4. Цели обработки</h3>
+<p>Связаться с пользователем по его заявке; обсудить и оценить проект, подготовить предложение; заключить и исполнить договор на оказание услуг.</p>
+<p>Персональные данные не используются для рассылок и рекламы и не обрабатываются в объеме больше, чем нужно для этих целей.</p>
+<h3>5. Согласие и правовые основания</h3>
+<p>5.1. Обработка осуществляется на основании согласия субъекта, которое дается на Сайте путем проставления отметки в форме заявки (ст. 7 и 8 Закона). Без согласия заявку отправить нельзя.</p>
+<p>5.2. Согласие действует до достижения целей обработки или до его отзыва субъектом.</p>
+<p>5.3. Давая согласие, пользователь соглашается в том числе на трансграничную передачу данных, указанную в разделе 6. Распространение персональных данных в общедоступных источниках не осуществляется.</p>
+<h3>6. Передача третьим лицам и трансграничная передача</h3>
+<p>6.1. Персональные данные не продаются и не передаются третьим лицам, кроме случаев, предусмотренных законодательством Республики Казахстан.</p>
+<p>6.2. Для приема и учета заявок оператор использует сервисы: хостинг Vercel (Vercel Inc., США), через который заявка передается с Сайта; Telegram (уведомление оператору о новой заявке); Google Таблицы (Google LLC, США), где хранится перечень заявок; а также мессенджеры и сервисы связи, выбранные пользователем (WhatsApp, Telegram, электронная почта). Серверы этих сервисов могут находиться за пределами Республики Казахстан, поэтому отправка заявки является трансграничной передачей, на которую пользователь дает согласие (ст. 16 Закона).</p>
+<h3>7. Хранение и уничтожение</h3>
+<p>7.1. Персональные данные хранятся в течение срока, необходимого для целей обработки, в том числе для связи с пользователем, исполнения договора и учета обращений, либо до отзыва пользователем согласия, если иной срок не установлен законодательством. После отзыва согласия данные удаляются в порядке, указанном в разделе о правах пользователя.</p>
+<p>7.2. По достижении целей, по истечении срока хранения или после отзыва согласия данные уничтожаются (ст. 18 Закона).</p>
+<h3>8. Права субъекта персональных данных</h3>
+<p>В соответствии со ст. 24 Закона пользователь вправе: знать, какие его данные обрабатываются, в каких целях и в течение какого срока; требовать изменения и дополнения своих данных; требовать блокирования данных, если нарушены условия их сбора и обработки; требовать уничтожения данных, собранных с нарушением законодательства; отозвать согласие на сбор и обработку; защищать свои права, в том числе в суде.</p>
+<h3>9. Отзыв согласия и обращения</h3>
+<p>Чтобы отозвать согласие или воспользоваться правами, напишите на aidvstudio@gmail.com с темой «Персональные данные». Оператор прекращает обработку или направляет мотивированный отказ в течение 15 рабочих дней (п. 7 ст. 8 Закона), а изменение, блокирование или уничтожение данных по обоснованному требованию выполняет в сроки, установленные Законом.</p>
+<h3>10. Защита персональных данных</h3>
+<p>Оператор принимает правовые, организационные и технические меры для защиты данных от неправомерного доступа, изменения, распространения и уничтожения: ограничивает круг лиц с доступом к заявкам, использует защищенные учетные записи, хранит заявки только столько, сколько нужно. О нарушении безопасности персональных данных оператор уведомляет уполномоченный орган в порядке, установленном Законом.</p>
+<h3>11. Изменение Политики</h3>
+<p>Оператор может обновлять Политику. Новая редакция действует с момента публикации на Сайте. Действующая редакция всегда доступна по ссылке в форме заявки и внизу страницы.</p>`,
+`<h2>Privacy policy</h2>
+<p class="pmeta">Version of 17 November 2026</p>
+<h3>1. General provisions</h3>
+<p>1.1. This Policy sets out how personal data of users of aidvstudio.com (the "Website") is collected, processed and protected. It follows Law of the Republic of Kazakhstan No. 94-V of 21 May 2013 "On personal data and their protection" (the "Law").</p>
+<p>1.2. Owner and operator of personal data: Almas DV (AIDV Studios), IIN/BIN: ${OP_ID}, Republic of Kazakhstan. Contacts: aidvstudio@gmail.com, +7 (778) 009 39 67.</p>
+<p>1.3. By sending a request through the Website form and ticking the consent box, the user confirms that they have read this Policy and consent to the collection and processing of their personal data on these terms.</p>
+<h3>2. Key terms</h3>
+<p><b>Personal data</b>: information relating to an identified or identifiable data subject.<br><b>Data subject</b>: the individual the personal data relates to (the Website user).<br><b>Owner and operator</b>: the person who owns the personal data database and collects, processes and protects the data.<br><b>Processing</b>: accumulating, storing, changing, using, distributing, depersonalising, blocking and destroying personal data.<br><b>Cross-border transfer</b>: transfer of personal data to the territory of foreign states.<br><b>Destruction</b>: actions after which personal data cannot be restored.</p>
+<h3>3. What data we process</h3>
+<p>Only what the user enters in the request form: name; preferred contact method and contact (phone number, Telegram username or email address); project details (chosen service, idea description, timing, approximate budget).</p>
+<p>The Website does not collect identity documents, biometric or other restricted data. It uses no advertising or analytics cookies. Only the chosen interface language is saved in the browser.</p>
+<h3>4. Purposes</h3>
+<p>To contact the user about their request; to discuss and estimate the project and prepare an offer; to conclude and perform a services contract.</p>
+<p>Personal data is not used for newsletters or advertising and is not processed beyond what these purposes require.</p>
+<h3>5. Consent and legal basis</h3>
+<p>5.1. Data is processed on the basis of the data subject's consent, given on the Website by ticking the box in the request form (Articles 7 and 8 of the Law). A request cannot be sent without consent.</p>
+<p>5.2. Consent is valid until the purposes are achieved or until it is withdrawn.</p>
+<p>5.3. By consenting, the user also agrees to the cross-border transfer described in section 6. Personal data is not published in publicly available sources.</p>
+<h3>6. Third parties and cross-border transfer</h3>
+<p>6.1. Personal data is not sold or passed to third parties, except where required by the laws of the Republic of Kazakhstan.</p>
+<p>6.2. To receive and keep track of requests the operator uses: Vercel hosting (Vercel Inc., USA), through which the request is sent from the Site; Telegram (a notification to the operator about a new request); Google Sheets (Google LLC, USA), where the list of requests is stored; and the messengers and services the user chooses (WhatsApp, Telegram, email). Their servers may be located outside Kazakhstan, so sending a request is a cross-border transfer, to which the user consents (Article 16 of the Law).</p>
+<h3>7. Storage and destruction</h3>
+<p>7.1. Personal data is kept for as long as the processing purposes require, including contacting the user, performing the contract and keeping a record of requests, or until the user withdraws consent, unless the law sets another period. After consent is withdrawn the data is deleted as described in the section on user rights.</p>
+<p>7.2. Once the purposes are achieved, the period expires or consent is withdrawn, the data is destroyed (Article 18 of the Law).</p>
+<h3>8. Rights of the data subject</h3>
+<p>Under Article 24 of the Law the user may: know which of their data is processed, why and for how long; request that their data be changed or completed; request blocking if the conditions of collection or processing were violated; request destruction of data collected unlawfully; withdraw consent; defend their rights, including in court.</p>
+<h3>9. Withdrawing consent and requests</h3>
+<p>To withdraw consent or exercise your rights, email aidvstudio@gmail.com with the subject "Personal data". The operator stops processing or sends a reasoned refusal within 15 working days (Article 8(7) of the Law), and changes, blocks or destroys data on a justified request within the periods set by the Law.</p>
+<h3>10. Data protection</h3>
+<p>The operator takes legal, organisational and technical measures to protect data against unauthorised access, alteration, disclosure and destruction: it limits who can see requests, uses secured accounts and keeps requests only as long as needed. The operator notifies the authorised body of personal data security breaches as required by the Law.</p>
+<h3>11. Changes to this Policy</h3>
+<p>The operator may update this Policy. A new version applies from its publication on the Website. The current version is always available from the request form and the page footer.</p>`,
+`<h2>Құпиялылық саясаты</h2>
+<p class="pmeta">2026 жылғы 17 қарашадағы редакция</p>
+<h3>1. Жалпы ережелер</h3>
+<p>1.1. Осы Саясат aidvstudio.com сайты (бұдан әрі «Сайт») пайдаланушыларының дербес деректерін жинау, өңдеу және қорғау тәртібін айқындайды және «Дербес деректер және оларды қорғау туралы» 2013 жылғы 21 мамырдағы № 94-V Қазақстан Республикасының Заңына (бұдан әрі «Заң») сәйкес жасалған.</p>
+<p>1.2. Дербес деректердің меншік иесі және операторы: Almas DV (AIDV Studios), ЖСН/БСН: ${OP_ID}, Қазақстан Республикасы. Байланыс: aidvstudio@gmail.com, +7 (778) 009 39 67.</p>
+<p>1.3. Сайттағы нысан арқылы өтінім жіберіп, келісімді белгілеу арқылы пайдаланушы Саясатпен танысқанын растайды және өз дербес деректерін осы шарттармен жинауға және өңдеуге келісім береді.</p>
+<h3>2. Негізгі ұғымдар</h3>
+<p><b>Дербес деректер</b>: белгілі бір немесе солардың негізінде айқындалатын дербес деректер субъектісіне қатысты мәліметтер.<br><b>Дербес деректер субъектісі</b>: дербес деректері өңделетін жеке тұлға (Сайт пайдаланушысы).<br><b>Меншік иесі және оператор</b>: дербес деректер базасына иелік ететін және деректерді жинауды, өңдеуді және қорғауды жүзеге асыратын тұлға.<br><b>Дербес деректерді өңдеу</b>: деректерді жинақтау, сақтау, өзгерту, пайдалану, тарату, иесіздендіру, бұғаттау және жою әрекеттері.<br><b>Трансшекаралық беру</b>: дербес деректерді шет мемлекеттердің аумағына беру.<br><b>Жою</b>: дербес деректерді қалпына келтіру мүмкін болмайтын әрекеттер.</p>
+<h3>3. Қандай деректерді өңдейміз</h3>
+<p>Пайдаланушы өтінім нысанында өзі көрсететін деректер ғана: аты; байланыс тәсілі және байланыс (телефон нөмірі, Telegram-дағы пайдаланушы аты немесе электрондық пошта); жоба туралы мәліметтер (таңдалған қызмет, идея сипаттамасы, мерзімі, шамамен бюджеті).</p>
+<p>Сайт жеке басты куәландыратын құжаттарды, биометриялық және басқа да қолжетімділігі шектеулі деректерді жинамайды. Жарнамалық және аналитикалық cookie қолданылмайды. Браузерде тек таңдалған интерфейс тілі сақталады.</p>
+<h3>4. Өңдеу мақсаттары</h3>
+<p>Өтінім бойынша пайдаланушымен байланысу; жобаны талқылау, бағалау және ұсыныс дайындау; қызмет көрсету шартын жасасу және орындау.</p>
+<p>Дербес деректер тарату мен жарнамаға пайдаланылмайды және осы мақсаттарға қажетті көлемнен артық өңделмейді.</p>
+<h3>5. Келісім және құқықтық негіздер</h3>
+<p>5.1. Өңдеу субъектінің келісімі негізінде жүзеге асырылады, келісім Сайтта өтінім нысанында белгі қою арқылы беріледі (Заңның 7 және 8-баптары). Келісімсіз өтінім жіберу мүмкін емес.</p>
+<p>5.2. Келісім өңдеу мақсаттарына қол жеткізілгенге дейін немесе субъект оны кері қайтарып алғанға дейін әрекет етеді.</p>
+<p>5.3. Келісім бере отырып, пайдаланушы 6-бөлімде көрсетілген трансшекаралық беруге де келіседі. Дербес деректер жалпыға қолжетімді көздерде таратылмайды.</p>
+<h3>6. Үшінші тұлғаларға және трансшекаралық беру</h3>
+<p>6.1. Дербес деректер сатылмайды және Қазақстан Республикасының заңнамасында көзделген жағдайлардан басқа кезде үшінші тұлғаларға берілмейді.</p>
+<p>6.2. Өтінімдерді қабылдау және есепке алу үшін оператор мына қызметтерді пайдаланады: Vercel хостингі (Vercel Inc., АҚШ), ол арқылы өтінім Сайттан жіберіледі; Telegram (операторға жаңа өтінім туралы хабарлама); Google Кестелері (Google LLC, АҚШ), онда өтінімдер тізімі сақталады; сондай-ақ пайдаланушы таңдаған мессенджерлер мен байланыс қызметтері (WhatsApp, Telegram, электрондық пошта). Бұл қызметтердің серверлері Қазақстаннан тыс жерде орналасуы мүмкін, сондықтан өтінім жіберу пайдаланушы келісім беретін трансшекаралық беру болып табылады (Заңның 16-бабы).</p>
+<h3>7. Сақтау және жою</h3>
+<p>7.1. Дербес деректер өңдеу мақсаттарына, оның ішінде пайдаланушымен байланысуға, шартты орындауға және өтінімдерді есепке алуға қажетті мерзім ішінде немесе пайдаланушы келісімін қайтарып алғанға дейін сақталады, егер заңнамада өзге мерзім белгіленбесе. Келісім қайтарылғаннан кейін деректер пайдаланушы құқықтары туралы бөлімде көрсетілген тәртіппен жойылады.</p>
+<p>7.2. Мақсаттарға қол жеткізілгенде, сақтау мерзімі өткенде немесе келісім кері қайтарылғанда деректер жойылады (Заңның 18-бабы).</p>
+<h3>8. Дербес деректер субъектісінің құқықтары</h3>
+<p>Заңның 24-бабына сәйкес пайдаланушы: өзінің қандай деректері, қандай мақсатта және қанша мерзім өңделетінін білуге; деректерін өзгертуді және толықтыруды талап етуге; жинау және өңдеу шарттары бұзылса, деректерді бұғаттауды талап етуге; заңнаманы бұза отырып жиналған деректерді жоюды талап етуге; келісімін кері қайтарып алуға; өз құқықтарын, оның ішінде сот арқылы қорғауға құқылы.</p>
+<h3>9. Келісімді кері қайтарып алу және өтініштер</h3>
+<p>Келісімді кері қайтарып алу немесе құқықтарыңызды пайдалану үшін aidvstudio@gmail.com мекенжайына «Дербес деректер» тақырыбымен жазыңыз. Оператор 15 жұмыс күні ішінде өңдеуді тоқтатады немесе дәлелді бас тарту жібереді (Заңның 8-бабының 7-тармағы), ал негізді талап бойынша деректерді өзгерту, бұғаттау немесе жою Заңда белгіленген мерзімде орындалады.</p>
+<h3>10. Дербес деректерді қорғау</h3>
+<p>Оператор деректерді заңсыз қолжеткізуден, өзгертуден, таратудан және жоюдан қорғау үшін құқықтық, ұйымдастырушылық және техникалық шаралар қабылдайды: өтінімдерге қолжетімділігі бар адамдар шеңберін шектейді, қорғалған есептік жазбаларды пайдаланады, өтінімдерді тек қажетті мерзімде сақтайды. Дербес деректер қауіпсіздігі бұзылғаны туралы оператор уәкілетті органды Заңда белгіленген тәртіппен хабардар етеді.</p>
+<h3>11. Саясатты өзгерту</h3>
+<p>Оператор Саясатты жаңарта алады. Жаңа редакция Сайтта жарияланған сәттен бастап қолданылады. Қолданыстағы редакция әрқашан өтінім нысанындағы және беттің төменгі жағындағы сілтеме арқылы қолжетімді.</p>`
+];
+const pol=$('#policy'),polBody=$('#policyBody');let polLast=null;
+function openPolicy(e){if(e){e.preventDefault();e.stopPropagation()}polLast=document.activeElement;polBody.innerHTML=POLICY[LI];polBody.scrollTop=0;pol.hidden=false;document.documentElement.style.overflow='hidden';lenis&&lenis.stop();
+  if(G&&!RM){G.fromTo('#policy .scrim',{opacity:0},{opacity:1,duration:.3});G.fromTo('#policy .pbox',{y:40,scale:.97,opacity:0},{y:0,scale:1,opacity:1,duration:.5,ease:'expo.out'})}
+  $('#policyClose').focus({preventScroll:true})}
+function closePolicy(){if(pol.hidden)return;pol.hidden=true;document.documentElement.style.overflow='';lenis&&lenis.start();polLast&&polLast.focus&&polLast.focus({preventScroll:true})}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-policy]');if(a)openPolicy(e)},true);
+$('#policyClose').onclick=closePolicy;$('#policy .scrim').onclick=closePolicy;
+addEventListener('keydown',e=>{if(e.key==='Escape')closePolicy()});
 
 /* ---- toast ---- */
 const toast=$('#toast');let tt;
@@ -680,26 +903,34 @@ const D={
  c3s:['Websites','Сайттар'],c3p:['Landing pages with a cinematic feel.','Кинематографиялық стильдегі лендингтер.'],
  c4s:['For people','Адамдар үшін'],c4p:['Love Story and personal films of 30–60 seconds.','30–60 секундтық Love Story және жеке фильмдер.'],
  ct1:["Let's",'Бірге'],ct2:['create','жасайық'],ct3:['something memorable','есте қалатын дүниені'],
- who:['Who the project is for','Жоба кім үшін'],whoB:["I'm a brand",'Мен брендпін'],whoM:["It's for me",'Бұл өзім үшін'],
- fName:['Name','Аты'],phName:['What should we call you','Сізге қалай жүгінейік'],
- fReach:['How to reach you','Байланыс'],phReach:['WhatsApp, Telegram or email','WhatsApp, Telegram немесе email'],
- fSvc:['Service','Қызмет'],unsure:['Not sure yet','Әзірге білмеймін'],
- fWhen:['Timing','Мерзімі'],phWhen:['For example, by 1 December','Мысалы, 1 желтоқсанға дейін'],
- fIdea:['Your idea in your own words','Идеяңыз өз сөзіңізбен'],phIdea:['What you want to show, to whom, and where it will be published','Не көрсеткіңіз келеді, кімге және қай жерде жарияланады'],
- agree:['I agree to the processing of my personal data and accept the <a href="#contact">privacy policy</a> <span class="req">*</span>','Жеке деректерімді өңдеуге келісемін және <a href="#contact">құпиялылық саясатын</a> қабылдаймын <span class="req">*</span>'],
- news:['I want to receive AIDV news and new work (optional)','AIDV жаңалықтары мен жаңа жұмыстарын алғым келеді (міндетті емес)'],
- send:['Send brief','Брифті жіберу'],player:['the film player goes here','мұнда ролик ойнатқышы болады'],close:['Close','Жабу'],
+ q1:['What should we call you?','Сізге қалай жүгінейік?'],phName:['Your name','Атыңыз'],
+ q2:['Which service do you need?','Қандай қызмет керек?'],oAd:['AI advertising for my company','Компанияма AI-жарнама'],oWeb:['Company website or landing page','Компанияға сайт немесе лендинг'],oFilm:['AI personal film, greeting, Love Story','AI жеке фильм, құттықтау, Love Story'],oOther:['Something else','Басқа'],
+ q3:['Describe your idea','Идеяңызды сипаттаңыз'],optional:['optional','міндетті емес'],phIdea:['What you want to create, for whom, and where it will live','Не жасағыңыз келеді, кім үшін және қай жерде жарияланады'],
+ next:['Next →','Әрі қарай →'],back:['← Back','← Артқа'],
+ q4:['When do you need it?','Нәтиже қашан керек?'],t1b:['Urgent','Шұғыл'],t1:['On fire, as soon as possible','Асығыс, мүмкіндігінше тезірек'],t2b:['Relaxed','Асықпай'],t2:['There is a little time to spare','Біраз уақыт қоры бар'],t3b:['No rush','Асықпаймыз'],t3:['Quality matters more than speed','Сапа маңыздырақ'],t4b:['Flexible','Икемді'],t4:["Not sure yet, let's discuss",'Әзірге білмеймін, талқылайық'],
+ q5:['Approximate budget','Шамамен бюджет'],b1b:['Start','Старт'],b1:['₸50–150k','50–150 мың ₸'],b2b:['Optimum','Оптимум'],b2:['₸150–300k','150–300 мың ₸'],b3b:['Premium','Премиум'],b3:['₸300k and up','300 мың ₸ бастап'],b4b:['Not sure','Білмеймін'],b4:['Advise me on budget','Бюджет бойынша кеңес беріңіз'],
+ q6:['How should we contact you?','Сізбен қалай байланысқан ыңғайлы?'],vCall:['Phone call','Телефон қоңырауы'],
+ q7:['Your contact','Байланысыңыз'],phReach:['Phone number or @username','Телефон нөмірі немесе @username'],
+ agree:['I agree to the collection and processing of my personal data, including cross-border transfer, and accept the <a href="#privacy" data-policy>privacy policy</a> <span class="req">*</span>','Дербес деректерімді жинауға және өңдеуге, оның ішінде трансшекаралық беруге келісемін және <a href="#privacy" data-policy>құпиялылық саясатын</a> қабылдаймын <span class="req">*</span>'],
+ polLink:['Privacy policy','Құпиялылық саясаты'],
+ send:['Send request','Өтінімді жіберу'],player:['the film player goes here','мұнда ролик ойнатқышы болады'],close:['Close','Жабу'],
  /* script-only strings: [RU, EN, KZ] */
  tick:['Отметьте согласие, чтобы отправить','Tick the consent box to send','Жіберу үшін келісімді белгілеңіз'],
  ready:['Готово к отправке','Ready to send','Жіберуге дайын'],
  sample:['Пример','Sample','Үлгі'],watch:['Смотреть','Watch','Көру'],drag:['Тянуть','Drag','Тарту'],
  words:[['Кино','Стиль','Эмоция','Продажи','Смелость'],['Cinema','Style','Emotion','Sales','Courage'],['Кино','Стиль','Эмоция','Сату','Батылдық']],
- wa:[['Бриф с сайта AIDV','Кто','Имя','Связь','Услуга','Сроки','Идея'],['Brief from the AIDV website','Who','Name','Contact','Service','Timing','Idea'],['AIDV сайтынан бриф','Кім','Аты','Байланыс','Қызмет','Мерзімі','Идея']],
- success:['Спасибо! Открываем WhatsApp с вашим брифом, осталось нажать «Отправить». Если он не открылся, напишите нам в Telegram <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.',
-  'Thank you! We are opening WhatsApp with your brief, just press Send. If it did not open, message us on Telegram <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.',
-  'Рақмет! Брифіңізбен WhatsApp ашылады, тек «Жіберу» батырмасын басыңыз. Егер ашылмаса, бізге Telegram арқылы жазыңыз: <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.']
+ wa:[['Заявка с сайта AIDV','Имя','Услуга','Идея','Сроки','Бюджет','Способ связи','Контакт','Новости AIDV'],['Request from the AIDV website','Name','Service','Idea','Timing','Budget','Contact via','Contact','AIDV news'],['AIDV сайтынан өтінім','Аты','Қызмет','Идея','Мерзімі','Бюджет','Байланыс тәсілі','Байланыс','AIDV жаңалықтары']],
+ stN1:['О проекте','About the project','Жоба туралы'],stN2:['Сроки и бюджет','Timing and budget','Мерзім және бюджет'],stN3:['Связь','Contact','Байланыс'],
+ errName:['Напишите, как к вам обращаться','Tell us your name','Атыңызды жазыңыз'],errSvc:['Выберите услугу','Choose a service','Қызметті таңдаңыз'],
+ errWhen:['Выберите сроки','Choose the timing','Мерзімді таңдаңыз'],errBudget:['Выберите примерный бюджет','Choose an approximate budget','Шамамен бюджетті таңдаңыз'],
+ errVia:['Выберите способ связи','Choose how to contact you','Байланыс тәсілін таңдаңыз'],errReach:['Оставьте контакт, чтобы мы могли ответить','Leave a contact so we can reply','Жауап беруіміз үшін байланысыңызды қалдырыңыз'],
+ ph_tg:['@username или номер телефона','@username or phone number','@username немесе телефон нөмірі'],ph_wa:['+7 (___) ___-__-__','+7 (___) ___-__-__','+7 (___) ___-__-__'],ph_call:['+7 (___) ___-__-__','+7 (___) ___-__-__','+7 (___) ___-__-__'],ph_mail:['name@mail.com','name@mail.com','name@mail.com'],
+ sending:['Отправляем…','Sending…','Жіберілуде…'],
+ sentOk:['Спасибо! Заявка у нас, мы свяжемся с вами в ближайшее время. Если удобнее, можно сразу продолжить в WhatsApp.','Thank you! We have your request and will get back to you shortly. If you prefer, continue in WhatsApp right away.','Рақмет! Өтінішіңіз бізде, жақын арада хабарласамыз. Қаласаңыз, бірден WhatsApp-та жалғастыра аласыз.'],
+ sentFail:['Не получилось отправить заявку автоматически. Нажмите кнопку ниже, бриф уже заполнен, или напишите нам в Telegram <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.','We could not send the request automatically. Press the button below, the brief is already filled in, or message us on Telegram <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.','Өтінімді автоматты түрде жіберу мүмкін болмады. Төмендегі батырманы басыңыз, бриф дайын, немесе бізге Telegram арқылы жазыңыз: <a href="https://t.me/almasaidvstudio" target="_blank" rel="noopener">@almasaidvstudio</a>.'],
+ waBtn:['Продолжить в WhatsApp','Continue in WhatsApp','WhatsApp-та жалғастыру'],
 };
-const SCRIPT_KEYS=new Set(['tick','ready','sample','watch','drag','words','wa','success']);
+const SCRIPT_KEYS=new Set(['tick','ready','sample','watch','drag','words','wa','success','sending','sentOk','sentFail','waBtn','stN1','stN2','stN3','errName','errSvc','errWhen','errBudget','errVia','errReach','ph_tg','ph_wa','ph_call','ph_mail']);
 /* T(key): markup keys fall back to the Russian captured from the page */
 const RU_SRC={};
 function T(k){const e=D[k];if(!e)return RU_SRC[k]||'';if(SCRIPT_KEYS.has(k))return e[LI];return LI===0?(RU_SRC[k]!=null?RU_SRC[k]:''):e[LI-1]}
@@ -766,37 +997,104 @@ function reveal(scope,trigger){
   if(subs.length)tl.from(subs,{y:34,opacity:0,duration:.8,ease:'power3.out',stagger:.08},lines.length?'-=.65':0);
   return tl;
 }
+/* ---- «ИДЕИ»: first «ИИ» shakes like an earthquake, splits, and «Д» «Е» jump up from below ---- */
+function ideaFx(tl){
+  const w=$('#ideaW'),ch=w?w.querySelectorAll('.ch'):[];if(ch.length!==4)return;
+  const [i1,d,e,i2]=ch,ln=$('#ideaLn'),half=()=>(d.offsetWidth+e.offsetWidth)/2;
+  G.set(i1,{x:()=>half()});G.set(i2,{x:()=>-half()});G.set([d,e],{yPercent:150,opacity:0});
+  const R=G.utils.random,quake=G.timeline();
+  for(let k=0;k<13;k++)quake.to([i1,i2],{x:j=>(j?-half():half())+R(-7,7),y:()=>R(-6,6),rotation:()=>R(-8,8),duration:.038,ease:'none'});
+  tl.add(quake,.75)
+    .set(ln,{overflow:'visible'})
+    .to(i1,{x:0,y:0,rotation:0,duration:.5,ease:'back.out(2.2)'})
+    .to(i2,{x:0,y:0,rotation:0,duration:.5,ease:'back.out(2.2)'},'<')
+    .to([d,e],{opacity:1,duration:.06,stagger:.09},'<+.04')
+    .to([d,e],{keyframes:[{yPercent:-48,rotation:(j)=>j?6:-6,duration:.3,ease:'power2.out'},{yPercent:0,rotation:0,duration:.6,ease:'bounce.out'}],stagger:.09},'<')
+    .set(ln,{overflow:''});
+}
 let heroTl=null;
 if(G&&!RM){
   heroTl=reveal($('#hero'),false);
+  if(LI===0)ideaFx(heroTl);
   ['#work .sec-head','#about','#services .sec-head','#contact'].forEach(s=>reveal($(s),true));
   $$('.door').forEach(d=>reveal(d,true));
   G.from('#steps .step',{scrollTrigger:{trigger:'#steps',start:'top 80%',once:true},rotateX:-85,y:40,opacity:0,transformOrigin:'50% 0%',duration:1.1,ease:'expo.out',stagger:.12});
   G.from('#svc .card',{scrollTrigger:{trigger:'#svc',start:'top 85%',once:true},y:80,rotateY:-20,opacity:0,duration:1,ease:'expo.out',stagger:.1});
   ScrollTrigger.create({trigger:'#strip',start:'top 85%',once:true,onEnter:()=>flyIn($$('.case').filter(c=>!c.hidden))});
-  G.to('#hero .wrap',{scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true},y:120,opacity:.2,ease:'none'});
+  G.to(['#hero .eyebrow','#ideaLn','#hero .hero-foot','#hero .scroll-cue'],{scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true},y:120,opacity:.2,ease:'none'});
+  /* headline on scroll: «становятся» slides off to the right at scroll speed, «реальностью» sinks and dissolves into the WORK ribbon */
+  const hl=$$('#hero h1 .ln');
+  if(hl[1])G.to(hl[1],{scrollTrigger:{trigger:'#hero',start:'top top',end:'+=70%',scrub:true,invalidateOnRefresh:true},x:()=>innerWidth*1.05,ease:'none'});
+  if(hl[2]){const drop=()=>{const h=$('#hero').getBoundingClientRect(),l=hl[2].getBoundingClientRect();return Math.max(h.bottom-l.bottom,0)};
+    G.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom 45%',scrub:true,invalidateOnRefresh:true}})
+      .to(hl[2],{y:drop,ease:'none',duration:1})
+      .to(hl[2],{opacity:0,filter:'blur(10px)',ease:'power1.in',duration:.4},.6);}
 }
+
+
+/* ---- hands: slide in after the intro, then float and breathe; they reach for a brief touch on a loop, scrolling also closes the gap ---- */
+(function hands(){
+  const L=$('#handL'),R=$('#handR'),hero=$('#hero');if(!L||!R)return;
+  const TIP_L=.42,TIP_R=.488; /* fingertip height inside each image */
+  L.style.transformOrigin=`0% ${TIP_L*100}%`;R.style.transformOrigin=`100% ${TIP_R*100}%`; /* pivot at the shoulder side */
+  const inn=S(0,{damping:1,response:1.1});let t=0,tc=-1;
+  window.__handsIn=()=>{inn.t=1;if(tc<0)tc=0};
+  if(!G||RM){inn.x=inn.t=1}
+  const CYC=6.5; /* seconds per reach-touch-part loop; the touch itself lasts well under a second */
+  const n=(x,a,b,c)=>Math.sin(x*a)*.55+Math.sin(x*b+1.7)*.3+Math.sin(x*c+4.1)*.15; /* soft layered drift */
+  ticks.add(dt=>{t+=dt;if(tc>=0&&!RM)tc+=dt;
+    const r=hero.getBoundingClientRect();if(r.bottom<0)return;
+    const w=L.offsetWidth,p=clamp(-r.top/(r.height*.25),0,1);
+    const s=.5-.5*Math.cos(Math.PI*2*Math.max(tc,0)/CYC),k=clamp((s-.3)/.67,0,1),cyc=tc<0||RM?0:k*k*(3-2*k),a=Math.max(p,cyc);
+    const apart=innerWidth*.05,touch=-.004*w,gap=apart+(touch-apart)*a,off=(1-inn.x)*(w+innerWidth*.1);
+    const m=RM?0:1-a*.9,u=RM?0:1-a; /* motion fades out as the fingers meet so the tips line up */
+    const xl=n(t,.5,.83,1.31)*9*m,yl=n(t,.42,.71,1.13)*14*m,rl=n(t,.37,.61,.97)*1.6*u,bl=1+Math.sin(t*1.1)*.012*m;
+    const xr=n(t+3,.47,.79,1.23)*9*m,yr=n(t+5,.4,.67,1.19)*14*m,rr=n(t+2,.35,.63,1.03)*1.6*u,br=1+Math.sin(t*1.1+1.9)*.012*m;
+    L.style.transform=`translate(${-gap-off+xl}px,calc(${-TIP_L*100}% + ${yl}px)) rotate(${rl}deg) scale(${bl})`;
+    R.style.transform=`translate(${gap+off+xr}px,calc(${-TIP_R*100}% + ${yr}px)) rotate(${rr}deg) scale(${br})`;
+  });
+})();
 
 /* ---- intro ---- */
 const intro=$('#intro');let introTl=null;
 function playIntro(){
-  if(!G||RM){intro.hidden=true;return}
+  if(!G||RM){intro.hidden=true;onIntroDone();return}
   intro.hidden=false;
   G.set(intro,{autoAlpha:1});G.set('.logo,.intro-sub,.counter,.skip',{autoAlpha:1});
-  G.set('.logo .gap',{width:0});G.set('.reel-window',{width:0,height:0,borderRadius:10});G.set('.logo .ai span',{color:'#F4F1EA',textShadow:'0 0 0px rgba(75,73,255,0)'});
+  G.set('.logo .grp',{x:0,skewX:0,filter:'blur(0px)',textShadow:'0 0 0 rgba(75,73,255,0)'});G.set('.logo',{scale:1});
+  G.set('.reel-window',{width:0,height:0,borderRadius:10,marginLeft:0});G.set('.logo .ai span',{color:'#F4F1EA',textShadow:'0 0 0px rgba(75,73,255,0)'});
+  G.set('.logo .L',{overflow:'hidden'});G.set('.swoosh',{width:0,opacity:0});
+  /* how far each half may travel: keep both halves (and the V) inside the screen on phones */
+  const narrow=innerWidth<700,sc=narrow?.78:1;
+  const spread=()=>{const w=$('.logo').offsetWidth;return Math.max(24,Math.min(((innerWidth-w*sc)/2-14)/sc,420))};
+  const trail=(dir,a)=>[1,2,3,4].map(i=>`${-dir*i*26}px 0 0 rgba(142,140,255,${(a*(.5-i*.1)).toFixed(2)})`).join(',');
   const cnt={v:0};
-  const tl=G.timeline({onComplete:()=>{intro.hidden=true;if(heroTl&&!heroTl._done){heroTl._done=true;heroTl.play()}}});
-  tl.fromTo('.logo .L span',{yPercent:110},{yPercent:0,duration:.9,ease:'expo.out',stagger:.08})
-    .to(cnt,{v:100,duration:2.4,ease:'power1.inOut',onUpdate:()=>$('#count').textContent=String(Math.round(cnt.v)).padStart(3,'0')},0)
-    .fromTo('.intro-sub',{autoAlpha:0,y:10},{autoAlpha:1,y:0,duration:.6},.4)
-    .to('.logo .ai span',{color:'#4B49FF',textShadow:'0 0 50px rgba(75,73,255,.9)',duration:.25},'-=.1')
-    .to('.logo .ai span',{color:'#F4F1EA',textShadow:'0 0 0px rgba(75,73,255,0)',duration:.4},'+=.35')
-    .to('.logo .gap',{width:()=>Math.min(innerWidth*.6,800),duration:.85,ease:'expo.inOut'})
-    .to('.reel-window',{width:()=>Math.min(innerWidth*.56,760),height:()=>Math.min(innerWidth*.13,170),duration:.85,ease:'expo.inOut'},'<')
-    .to('.reel-window',{width:()=>innerWidth,height:()=>innerHeight,borderRadius:0,duration:.9,ease:'expo.inOut'},'+=.15')
-    .to('.logo,.intro-sub,.counter,.skip',{autoAlpha:0,duration:.3},'<')
-    .to(intro,{autoAlpha:0,duration:.5});
+  const tl=G.timeline({onComplete:()=>{intro.hidden=true;onIntroDone()}});
+  tl.fromTo('.logo .L span',{yPercent:110},{yPercent:0,duration:.7,ease:'expo.out',stagger:.06})
+    .to(cnt,{v:100,duration:1.9,ease:'power1.inOut',onUpdate:()=>$('#count').textContent=String(Math.round(cnt.v)).padStart(3,'0')},0)
+    .fromTo('.intro-sub',{autoAlpha:0,y:10},{autoAlpha:1,y:0,duration:.5},.3)
+    .to('.logo .ai span',{color:'#4B49FF',textShadow:'0 0 50px rgba(75,73,255,.9)',duration:.2},'-=.15')
+    .to('.logo .ai span',{color:'#F4F1EA',textShadow:'0 0 0px rgba(75,73,255,0)',duration:.3},'+=.2')
+    .set('.logo .L',{overflow:'visible'})
+    /* swoosh: a short pull inward, then both halves slide out fast, skewed, blurred and trailing echoes */
+    .to('.g1',{x:8,duration:.12,ease:'power2.in'},'-=.05').to('.g2',{x:-8,duration:.12,ease:'power2.in'},'<')
+    .to('.logo',{scale:sc,duration:.55,ease:'expo.out'})
+    .fromTo('.swoosh',{width:0,opacity:1},{width:()=>innerWidth*.9,opacity:0,duration:.55,ease:'expo.out',immediateRender:false},'<')
+    .to('.g1',{x:()=>-spread(),duration:.55,ease:'expo.out'},'<').to('.g2',{x:()=>spread(),duration:.55,ease:'expo.out'},'<')
+    .fromTo('.g1',{skewX:18,filter:'blur(6px)',textShadow:trail(-1,1)},{skewX:0,filter:'blur(0px)',textShadow:trail(-1,0),duration:.5,ease:'power2.out',immediateRender:false},'<')
+    .fromTo('.g2',{skewX:-18,filter:'blur(6px)',textShadow:trail(1,1)},{skewX:0,filter:'blur(0px)',textShadow:trail(1,0),duration:.5,ease:'power2.out',immediateRender:false},'<')
+    .set('.reel-window',{marginLeft:()=>($('.g1').offsetWidth-$('.g2').offsetWidth)/2*sc},'<')
+    .to('.reel-window',{width:()=>Math.max(30,spread()*2*sc*.78),height:()=>Math.min(innerWidth*.13,170),duration:.5,ease:'expo.out'},'<+.05')
+    .to('.reel-window',{marginLeft:0,duration:.75,ease:'expo.inOut'},'>+.05')
+    .to('.reel-window',{width:()=>innerWidth,height:()=>innerHeight,borderRadius:0,duration:.75,ease:'expo.inOut'},'<')
+    .to('.logo,.intro-sub,.counter,.skip',{autoAlpha:0,duration:.25},'<')
+    .to(intro,{autoAlpha:0,duration:.4});
   introTl=tl;
+}
+let introDone=false;
+function onIntroDone(){if(introDone)return;introDone=true;window.__handsIn&&window.__handsIn();
+  if(heroTl&&!heroTl._done){heroTl._done=true;heroTl.play()}
+  
 }
 $('#skip').onclick=()=>introTl&&introTl.progress(1);
 playIntro();
@@ -816,6 +1114,7 @@ if(!G&&heroTl==null){} /* without GSAP everything simply stays visible */
   const N=900,pos=new Float32Array(N*3);for(let i=0;i<N;i++){const r=3.6+Math.random()*7,th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);pos[i*3]=r*Math.sin(ph)*Math.cos(th);pos[i*3+1]=r*Math.sin(ph)*Math.sin(th);pos[i*3+2]=r*Math.cos(ph)}
   const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
   const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xBEBCFF,size:.03,transparent:true,opacity:.7}));scene.add(pts);
+  core.visible=cage.visible=orbit.visible=moon.visible=false; /* hands replace the polyhedron; the starfield stays */
   scene.add(new THREE.AmbientLight(0x404070,.7));
   const l1=new THREE.PointLight(0x4B49FF,7,30);l1.position.set(-4,2,5);scene.add(l1);
   const l2=new THREE.PointLight(0xFFE9C9,3.2,30);l2.position.set(4,-1.5,5);scene.add(l2);
